@@ -5,4 +5,7 @@
     <string name="services">Servicios</string>
     <string name="prints">Impresiones</string>
     <string name="acord">Apostillados y Acuerdos</string>
+    <string name="mails">Correos</string>
+    <string name="pay">Pago de servicios</string>
+    <string name="contracts">Poderes y Contratos</string>
 </resources>

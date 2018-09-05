@@ -8,12 +8,6 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px"
-        />
-
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -22,10 +16,38 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TableRow
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="50px"
+                />
+
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/mails"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/pay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="@android:integer/config_longAnimTime"
+                    android:text="@string/contracts"/>
+
+            </TableRow>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50px" />
+            <TableRow
+                >
 
                 <ImageView
                     android:layout_width="500px"
@@ -40,14 +62,16 @@
                 <ImageView
                     android:layout_width="500px"
                     android:layout_height="match_parent"
-                    android:src="@drawable/if_app_services_copy_amazon_email_259354" />
+                    android:src="@drawable/poderes_y_contratos" />
             </TableRow>
+
             <Space
+                android:id="@+id/S1"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R2"
                 android:layout_width="match_parent"
                 android:layout_height="29dp">
 
@@ -56,7 +80,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/sends" />
-                //para centrar el objeto
 
 
                 <TextView
@@ -69,15 +92,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="@android:integer/status_bar_notification_info_maxnum"
                     android:text="@string/acord" />
             </TableRow>
 
             <Space
+                android:id="@+id/S2"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -98,11 +123,12 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S3"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -123,11 +149,12 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S4"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -148,11 +175,12 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S5"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -173,11 +201,12 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S6"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -198,11 +227,12 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S7"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R8"
                 android:layout_width="match_parent"
                 android:layout_height="50px">
 
@@ -223,18 +253,15 @@
             </TableRow>
 
             <Space
+                android:id="@+id/S8"
                 android:layout_width="match_parent"
-                android:layout_height="70px"
-                />
+                android:layout_height="70px" />
 
             <TableRow
+                android:id="@+id/R9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/poderes_y_contratos" />
 
                 <ImageView
                     android:layout_width="match_parent"
