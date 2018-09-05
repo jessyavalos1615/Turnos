@@ -3,4 +3,6 @@
     <string name="sends">Envios</string>
     <string name="tax">Impuestos</string>
     <string name="services">Servicios</string>
+    <string name="prints">Impresiones</string>
+    <string name="acord">Apostillados y Acuerdos</string>
 </resources>
