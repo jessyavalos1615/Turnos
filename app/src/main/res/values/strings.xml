@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Turnos</string>
+    <string name="app_name">CS Latinos</string>
+    <string name="sends">Envios</string>
+    <string name="tax">Impuestos</string>
+    <string name="services">Servicios</string>
 </resources>

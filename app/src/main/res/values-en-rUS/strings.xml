@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CS Latinos</string>
+    <string name="sends">Sends</string>
+    <string name="tax">Tax</string>
+    <string name="services">Services</string>
+</resources>
