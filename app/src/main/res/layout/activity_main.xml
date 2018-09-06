@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
     tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Income Tax" />
 
     <ScrollView
         android:id="@+id/scroll"
@@ -16,38 +23,39 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50px"
-                />
+                android:layout_height="50px" />
 
             <TableRow>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/mails"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/pay"/>
+                    android:text="@string/mails" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/pay" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="@android:integer/config_longAnimTime"
-                    android:text="@string/contracts"/>
+                    android:text="@string/contracts" />
 
             </TableRow>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="50px" />
-            <TableRow
-                >
+
+            <TableRow>
 
                 <ImageView
                     android:layout_width="500px"
@@ -127,6 +135,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Agencia de Viajes" />
+
             <TableRow
                 android:id="@+id/R4"
                 android:layout_width="match_parent"
@@ -136,6 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/agencias_de_viajes" />
+
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -272,4 +288,5 @@
             </TableRow>
         </TableLayout>
     </ScrollView>
+
 </LinearLayout>
