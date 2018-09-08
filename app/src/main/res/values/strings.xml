@@ -8,4 +8,17 @@
     <string name="mails">Correos</string>
     <string name="pay">Pago de servicios</string>
     <string name="contracts">Poderes y Contratos</string>
+    <string name="Travel">Agencia de Viajes</string>
+    <string name="Scan">Escaneado</string>
+    <string name="Tax">Income Tax</string>
+    <string name="TPV">Permisos Temporales de Vehiculos</string>
+    <string name="LlenadoForms">Llenado de Formas</string>
+    <string name="MoneyOrd">Money Orders</string>
+    <string name="NP">Notary Public</string>
+    <string name="LegacyVehicule">Legalizacion de Vehiculos</string>
+    <string name="pack">Paqueteria</string>
+    <string name="PassPort">Fotos Pasaporte y Migracion</string>
+    <string name="PermissionTravel">Permisos Para Viajar</string>
+    <string name="Traduccion">Traducciones</string>
+
 </resources>
