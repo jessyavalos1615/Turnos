@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:paddingLeft="20dp"
+    android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
 
@@ -28,26 +30,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="50px" />
 
-            <TableRow>
+            <TableRow
+                android:id="@+id/R11"
+                android:layout_width="match_parent"
+                android:layout_height="202dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/mails" />
+                    android:text="@string/mails"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/pay" />
+                    android:text="@string/pay"
+                    android:textSize="30sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="@android:integer/config_longAnimTime"
-                    android:text="@string/contracts" />
+                    android:paddingLeft="50dp"
+                    android:text="@string/contracts"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -87,21 +95,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/sends" />
+                    android:text="@string/sends"
+                    android:textSize="30sp" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/prints" />
+                    android:text="@string/prints"
+                    android:textSize="30sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="@android:integer/status_bar_notification_info_maxnum"
-                    android:text="@string/acord" />
+                    android:paddingLeft="30dp"
+                    android:layout_weight="0"
+                    android:text="@string/acord"
+                    android:textSize="30sp" />
             </TableRow>
 
             <Space
@@ -137,22 +149,27 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="50px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/Travel"/>
+                    android:text="@string/Travel"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                     android:text="@string/Scan" />
+                    android:text="@string/Scan"
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/Tax"/>
+                    android:text="@string/Tax"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -189,23 +206,29 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="@android:integer/status_bar_notification_info_maxnum"
-                    android:text="@string/LegacyVehicule"/>
+                    android:paddingLeft="20dp"
+                    android:text="@string/LegacyVehicule"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/LlenadoForms" />
+                    android:paddingLeft="50dp"
+                    android:text="@string/LlenadoForms"
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/MoneyOrd"/>
+                    android:text="@string/MoneyOrd"
+                    android:textSize="30sp" />
 
             </TableRow>
             <Space
@@ -239,22 +262,28 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                   android:text="@string/NP"/>
+                    android:text="@string/NP"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/LlenadoForms" />
+                    android:paddingLeft="50dp"
+                    android:text="@string/LlenadoForms"
+                    android:textSize="30sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/pack"/>
+                    android:text="@string/pack"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -292,22 +321,30 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/PassPort"/>
+                    android:paddingLeft="25dp"
+                    android:text="@string/PassPort"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/PermissionTravel" />
+                    android:paddingLeft="50dp"
+                    android:text="@string/PermissionTravel"
+                    android:textSize="30sp" />
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/TPV"/>
+                    android:paddingLeft="50dp"
+                    android:text="@string/TPV"
+                    android:textSize="30sp" />
 
             </TableRow>
 
@@ -323,30 +360,42 @@
                 android:layout_height="50px">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="300px"
+                    android:layout_width="128px"
+                    android:layout_height="128px"
                     android:src="@drawable/pasaporte" />
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="300px"
+                    android:layout_width="128px"
+                    android:layout_height="128px"
                     android:src="@drawable/permisos_para_viajar" />
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="300px"
+                    android:layout_width="128px"
+                    android:layout_height="128px"
                     android:src="@drawable/permisos_temporales_de_vehiculos" />
             </TableRow>
 
             <Space
-                android:id="@+id/S8"
                 android:layout_width="match_parent"
-                android:layout_height="70px" />
-            <TextView
+                android:layout_height="70px"/>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/Traduccion"
+                    android:textSize="30sp" />
+
+            </TableRow>
+
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/Traduccion"/>
+                android:layout_height="70px"/>
+
+
             <TableRow
                 android:id="@+id/R9"
                 android:layout_width="match_parent"
