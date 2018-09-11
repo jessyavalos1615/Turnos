@@ -3,7 +3,7 @@
     <string name="sends">Envios</string>
     <string name="tax">Impuestos</string>
     <string name="services">Servicios</string>
-    <string name="prints">Impresiones</string>
+    <string name="prints">Centro de Copiado</string>
     <string name="acord">Apostillados y Acuerdos</string>
     <string name="mails">Correos</string>
     <string name="pay">Pago de servicios</string>
@@ -20,5 +20,7 @@
     <string name="PassPort">Fotos Pasaporte y Migracion</string>
     <string name="PermissionTravel">Permisos Para Viajar</string>
     <string name="Traduccion">Traducciones</string>
+    <string name="phone">Tarjetas Telefonicas</string>
+    <string name="conection">Conexion: </string>
 
 </resources>

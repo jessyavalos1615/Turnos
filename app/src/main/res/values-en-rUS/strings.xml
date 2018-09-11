@@ -19,4 +19,6 @@
     <string name="pack">Paqueteria</string>
     <string name="PassPort">Fotos Pasaporte y Migracion</string>
     <string name="Traduccion">Traducciones</string>
+    <string name="phone">Tarjetas Telefonicas</string>
+    <string name="conection">Conexion</string>
 </resources>

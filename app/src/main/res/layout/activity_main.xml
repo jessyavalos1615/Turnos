@@ -9,14 +9,6 @@
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="33dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Income Tax" />
-
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -25,6 +17,14 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/conexion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:text="@string/conection"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -66,16 +66,20 @@
             <TableRow>
 
                 <ImageView
+                    android:id="@+id/mail"
                     android:layout_width="500px"
                     android:layout_height="match_parent"
+                    android:onClick="sendData"
                     android:src="@drawable/ic_mail_outline_black_48dp" />
 
                 <ImageView
+                    android:id="@+id/service"
                     android:layout_width="500px"
                     android:layout_height="match_parent"
                     android:src="@drawable/if_shopify_onlyne_payments_pay_online_send_money_credit_card_card_ecommerce_2325037" />
 
                 <ImageView
+                    android:id="@+id/powers"
                     android:layout_width="500px"
                     android:layout_height="match_parent"
                     android:src="@drawable/poderes_y_contratos" />
@@ -127,16 +131,19 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/sends"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/if_97_2530016" />
 
                 <ImageView
+                    android:id="@+id/copy"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/if_thefreeforty_withdraw_1243703" />
 
                 <ImageView
+                    android:id="@+id/acord"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/acuerdos" />
@@ -183,17 +190,20 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/travel"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/agencias_de_viajes" />
 
 
                 <ImageView
+                    android:id="@+id/scan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/centro_de_copiado" />
 
                 <ImageView
+                    android:id="@+id/tax"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/if_13_tax_1871418" />
@@ -241,16 +251,19 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/car"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/legalizacion_de_vehiculos" />
 
                 <ImageView
+                    android:id="@+id/forms"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/llenado_de_formas" />
 
                 <ImageView
+                    android:id="@+id/moneyOrd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/money_orders" />
@@ -275,7 +288,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingLeft="50dp"
-                    android:text="@string/LlenadoForms"
+                    android:text="@string/phone"
                     android:textSize="30sp" />
 
                 <TextView
@@ -298,16 +311,19 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/notary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/notary_publick" />
 
                 <ImageView
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/pago_servicios" />
 
                 <ImageView
+                    android:id="@+id/pack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/paqueteria" />
@@ -360,16 +376,19 @@
                 android:layout_height="50px">
 
                 <ImageView
+                    android:id="@+id/photos"
                     android:layout_width="128px"
                     android:layout_height="128px"
                     android:src="@drawable/pasaporte" />
 
                 <ImageView
+                    android:id="@+id/loan"
                     android:layout_width="128px"
                     android:layout_height="128px"
                     android:src="@drawable/permisos_para_viajar" />
 
                 <ImageView
+                    android:id="@+id/temp_car"
                     android:layout_width="128px"
                     android:layout_height="128px"
                     android:src="@drawable/permisos_temporales_de_vehiculos" />
@@ -403,6 +422,7 @@
 
 
                 <ImageView
+                    android:id="@+id/traduction"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/traducciones" />
