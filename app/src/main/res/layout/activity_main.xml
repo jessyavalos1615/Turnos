@@ -9,6 +9,10 @@
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
+    <HorizontalScrollView
+        android:id="@+id/land_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -488,5 +492,5 @@
             </TableRow>
         </TableLayout>
     </ScrollView>
-
+    </HorizontalScrollView>
 </LinearLayout>
