@@ -1,6 +1,7 @@
 package com.example.uli_b.turnos;
 
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
@@ -11,11 +12,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +67,110 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    //Seccion de codigo para conexion web services
+    private class InvocarServicioRegistrarAlumnos extends AsyncTask<Void, Integer, Void> {
+
+        private int progreso;
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            registrarServicio();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            //bt1.setClickable(true);
+            if(result==null){
+                Toast.makeText(MainActivity.this,"Soy null", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MainActivity.this,"Proceso existoso", Toast.LENGTH_SHORT).show();
+                jsonInsertLocal(result);
+            }
+
+
+        }
+        @Override
+        protected void onPreExecute() {
+            progreso = 0;
+
+            // bt1.setClickable(false);
+        }
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+        }
+    }
+
+
+    private void registrarServicio() {
+        HashMap<String, String> parameters = new HashMap<String, String>();
+        //Enviamos los parametros necesarios para el webservice
+        String idServicio = "1";
+        parameters.put("param1",idServicio);
+        // parameters.put("param2", et2.getText().toString());
+        //parameters.put("param3", et3.getText().toString());
+        String response = "";
+        try {
+
+            URL url = new URL("https://ulises261996.000webhostapp.com/");
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(getPostDataString(parameters));
+            writer.flush();
+            writer.close();
+            os.close();
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    response += line;
+                }
+            } else {
+                response = "";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if (first) first = false;
+            else result.append("&");
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+        return result.toString();
+    }
+    private void jsonInsertLocal(Void result)  {
+
+
+
+        try {
+            JSONArray jsonarray = new JSONArray(result);
+            for(int i=0; i < jsonarray.length(); i++) {
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                String idticket       = jsonobject.getString("idticket");
+                //String title    = jsonobject.getString("param2");
+                //String company  = jsonobject.getString("param3");
+                Toast.makeText(MainActivity.this,"Alumno registrado "+idticket, Toast.LENGTH_SHORT).show();
+
+                // lv12.setText(id);
+            }
+
+        } catch(JSONException e) {
+
+        }
+    }
+    //Terminacion de codigo del web services
 
     void findBT() {
 
@@ -177,10 +300,10 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             // the text typed by the user
-            String msg = myTextbox.getText().toString();
-            msg += "\n";
+            //String msg = myTextbox.getText().toString();
+            //msg += "\n";
 
-            mmOutputStream.write(msg.getBytes());
+            //mmOutputStream.write(msg.getBytes());
 
             // tell the user data were sent
             conection.setText("Data sent.");
