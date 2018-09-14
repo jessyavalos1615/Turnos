@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:paddingLeft="20dp"
+    android:paddingLeft="30dp"
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
@@ -65,23 +65,32 @@
 
             <TableRow>
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/mail"
-                    android:layout_width="500px"
-                    android:layout_height="match_parent"
-                    android:onClick="sendData"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/ic_mail_outline_black_48dp" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/service"
-                    android:layout_width="500px"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/if_shopify_onlyne_payments_pay_online_send_money_credit_card_card_ecommerce_2325037" />
 
-                <ImageView
+
+                <ImageButton
                     android:id="@+id/powers"
-                    android:layout_width="500px"
-                    android:layout_height="match_parent"
+                    android:layout_width="68dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="10dp"
                     android:src="@drawable/poderes_y_contratos" />
             </TableRow>
 
@@ -130,22 +139,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/sends"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="40dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/if_97_2530016" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/copy"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/if_thefreeforty_withdraw_1243703" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/acord"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/acuerdos" />
             </TableRow>
 
@@ -189,23 +207,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/travel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/agencias_de_viajes" />
 
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/scan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/centro_de_copiado" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/tax"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/if_13_tax_1871418" />
             </TableRow>
 
@@ -250,22 +277,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/car"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/legalizacion_de_vehiculos" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/forms"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/llenado_de_formas" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/moneyOrd"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/money_orders" />
             </TableRow>
             <Space
@@ -310,22 +346,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/notary"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/notary_publick" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/pago_servicios" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/pack"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/paqueteria" />
             </TableRow>
 
@@ -375,22 +420,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="50px">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/photos"
-                    android:layout_width="128px"
-                    android:layout_height="128px"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/pasaporte" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/loan"
-                    android:layout_width="128px"
-                    android:layout_height="128px"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/permisos_para_viajar" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/temp_car"
-                    android:layout_width="128px"
-                    android:layout_height="128px"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/permisos_temporales_de_vehiculos" />
             </TableRow>
 
@@ -421,10 +475,13 @@
                 android:layout_height="match_parent">
 
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/traduction"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:src="@drawable/traducciones" />
 
 
