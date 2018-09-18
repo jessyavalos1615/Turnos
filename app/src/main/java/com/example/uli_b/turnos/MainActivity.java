@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
     void openBT() throws IOException {
         try {
 
-            // Se establece el serial del puerto de sercivio estandar paa la ceonexion.
+            // Se establece el serial del puerto de servicio estandar paa la ceonexion.
             UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
             //Se establece el Socket para la conexion y se conecta
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
             //Llamamos el metodo que estara a la espera de datos
             beginListenForData();
 
-            //Mandamos al TextView par informar que la conexion se  ah abierto.
+            //Mandamos al TextView para informar que la conexion se  ah abierto.
             conection.setText("Bluetooth Opened");
 
         } catch (Exception e) {
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Metodo utilizado para recivir datos desde otro dispositivo
+    //Metodo utilizado para recibir datos desde otro dispositivo
     void beginListenForData() {
         try {
             final Handler handler = new Handler();
