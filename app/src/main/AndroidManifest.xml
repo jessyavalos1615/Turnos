@@ -3,6 +3,11 @@
     package="com.example.uli_b.turnos">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.INTERNET" />
+=======
+
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity_Other"></activity>
     </application>
 
 </manifest>
