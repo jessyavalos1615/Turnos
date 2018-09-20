@@ -31,7 +31,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 <<<<<<< HEAD
+<<<<<<< HEAD
                     android:text="@string/conection"
+=======
+                    android:text="@string/sends"
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
 =======
                     android:text="@string/sends"
 >>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
@@ -364,6 +368,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70px" />
 
+<<<<<<< HEAD
                 <TableRow
                     android:id="@+id/R3"
                     android:layout_width="match_parent"
@@ -433,6 +438,27 @@
                     android:id="@+id/S9"
                     android:layout_width="match_parent"
                     android:layout_height="70px" />
+=======
+                <TextView
+                    android:layout_width="100px"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="25dp"
+                    android:text="@string/PassPort"
+                    android:textSize="30sp" />
+
+            </TableRow>
+            <Space
+                android:id="@+id/S10"
+                android:layout_width="match_parent"
+                android:layout_height="70px" />
+            <TableRow
+                android:id="@+id/R5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
 
                 <TableRow
                     android:id="@+id/R4"
@@ -473,6 +499,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70px" />
 
+<<<<<<< HEAD
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -674,10 +701,21 @@
                 android:id="@+id/R5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+=======
+                <ImageButton
+                    android:id="@+id/moneyOrd"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="35dp"
+                    android:src="@drawable/money_orders" />
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
 
 
 
                 <ImageButton
+<<<<<<< HEAD
                     android:id="@+id/forms"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
@@ -696,6 +734,8 @@
                     android:src="@drawable/money_orders" />
 
                 <ImageButton
+=======
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
                     android:id="@+id/photos"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
@@ -721,8 +761,14 @@
                     android:textSize="30sp" />
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
+
+
+<<<<<<< HEAD
 >>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
 
                 <TableRow
@@ -784,6 +830,28 @@
                     android:id="@+id/R9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+=======
+            <Space
+                android:id="@+id/S5"
+                android:layout_width="match_parent"
+                android:layout_height="70px" />
+
+            <TableRow
+                android:id="@+id/R6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/other"
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="35dp"
+                    android:paddingBottom="50dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/if_other_1167997" />
+
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
 
 
                     <ImageButton
@@ -795,6 +863,7 @@
                         android:paddingRight="10dp"
                         android:src="@drawable/traducciones" />
 
+<<<<<<< HEAD
 
                 </TableRow>
             </TableLayout>
@@ -830,6 +899,15 @@
 
 
 
+=======
+            <Space
+                android:id="@+id/S6"
+                android:layout_width="match_parent"
+                android:layout_height="70px" />
+
+
+
+>>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
         </TableLayout>
     </ScrollView>
 >>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
