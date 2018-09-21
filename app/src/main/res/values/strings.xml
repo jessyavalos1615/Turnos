@@ -7,7 +7,7 @@
     <string name="acord">Apostillados y Acuerdos</string>
     <string name="mails">Correos</string>
     <string name="pay">Pago de servicios</string>
-    <string name="documents">Documentos</string>
+    <string name="contracts">Poderes y Contratos</string>
     <string name="Travel">Agencia de Viajes</string>
     <string name="Scan">Escaneado</string>
     <string name="Tax">Income Tax</string>
@@ -20,9 +20,7 @@
     <string name="PassPort">Fotos Pasaporte y Migracion</string>
     <string name="PermissionTravel">Permisos Para Viajar</string>
     <string name="Traduccion">Traducciones</string>
-    <string name="phone">Recargas Telefonicas</string>
+    <string name="phone">Tarjetas Telefonicas</string>
     <string name="conection">Conexion: </string>
-    <string name="fax">Fax público</string>
-    <string name="other">Otros Servicios</string>
 
 </resources>
