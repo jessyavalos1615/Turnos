@@ -82,7 +82,7 @@
                     android:src="@drawable/ic_mail_outline_black_48dp" />
 
                 <ImageButton
-                    android:id="@+id/service"
+                    android:id="@+id/services"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -92,12 +92,12 @@
 
 
                 <ImageButton
-                    android:id="@+id/powers"
+                    android:id="@+id/copy"
                     android:layout_width="68dp"
                     android:layout_height="128dp"
-                    android:paddingRight="20dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="35dp"
+                    android:paddingRight="20dp"
                     android:src="@drawable/copy" />
             </TableRow>
 
@@ -144,6 +144,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    android:id="@+id/sends"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -152,6 +153,7 @@
                     android:src="@drawable/if_97_2530016" />
 
                 <ImageButton
+                    android:id="@+id/scan"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -160,6 +162,7 @@
                     android:src="@drawable/centro_de_copiado" />
 
                 <ImageButton
+                    android:id="@+id/passport"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="50dp"
@@ -210,6 +213,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    android:id="@+id/forms"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -219,6 +223,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/fax"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -227,6 +232,7 @@
                     android:src="@drawable/fax" />
 
                 <ImageButton
+                    android:id="@+id/phone"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="50dp"
@@ -278,6 +284,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    android:id="@+id/money"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
@@ -287,15 +294,17 @@
 
 
                 <ImageButton
+                    android:id="@+id/others"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
-                    android:paddingRight="10dp"
                     android:paddingBottom="60dp"
+                    android:paddingRight="10dp"
                     android:src="@drawable/if_other_1167997" />
 
                 <ImageButton
+                    android:id="@+id/info"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="50dp"

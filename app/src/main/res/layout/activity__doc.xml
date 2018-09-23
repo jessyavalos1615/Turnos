@@ -58,6 +58,7 @@
         android:layout_height="202dp">
 
         <ImageButton
+            android:id="@+id/traslate"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_marginLeft="40dp"
@@ -70,6 +71,7 @@
             android:layout_height="0px" />
 
         <ImageButton
+            android:id="@+id/notary"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_marginLeft="10dp"
@@ -100,7 +102,7 @@
                 android:layout_height="0px" />
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingLeft="50dp"
@@ -115,24 +117,26 @@
             android:layout_width="match_parent"
             android:layout_height="202dp">
 
-        <ImageButton
-            android:layout_width="150dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="30dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/if_13_tax_1871418" />
+            <ImageButton
+                android:id="@+id/tax"
+                android:layout_width="150dp"
+                android:layout_height="128dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="30dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/if_13_tax_1871418" />
 
             <Space
                 android:layout_width="100dp"
                 android:layout_height="0px" />
 
-        <ImageButton
-            android:layout_width="150dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/acuerdos" />
+            <ImageButton
+                android:id="@+id/acords"
+                android:layout_width="150dp"
+                android:layout_height="128dp"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/acuerdos" />
         </TableRow>
 
         <Space
@@ -176,6 +180,7 @@
             android:layout_height="202dp">
 
             <ImageButton
+                android:id="@+id/powers"
                 android:layout_width="150dp"
                 android:layout_height="128dp"
                 android:layout_marginLeft="40dp"
