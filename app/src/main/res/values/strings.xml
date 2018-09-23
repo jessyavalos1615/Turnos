@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">CS Latinos</string>
-    <string name="sends">Envios</string>
-    <string name="tax">Impuestos</string>
+    <string name="sends">Envios de dinero</string>
     <string name="services">Servicios</string>
     <string name="prints">Centro de Copiado</string>
     <string name="acord">Apostillados y Acuerdos</string>
@@ -20,7 +19,10 @@
     <string name="PassPort">Fotos Pasaporte y Migracion</string>
     <string name="PermissionTravel">Permisos Para Viajar</string>
     <string name="Traduccion">Traducciones</string>
-    <string name="phone">Tarjetas Telefonicas</string>
+    <string name="phone">Recargas Telefonicas</string>
     <string name="conection">Conexion: </string>
+    <string name="fax">Fax</string>
+    <string name="inf">Inforrmación</string>
+    <string name="othe">Otros Servicios</string>
 
 </resources>

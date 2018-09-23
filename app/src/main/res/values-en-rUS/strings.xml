@@ -21,4 +21,7 @@
     <string name="Traduccion">Traducciones</string>
     <string name="phone">Tarjetas Telefonicas</string>
     <string name="conection">Conexion</string>
+    <string name="fax">Fax</string>
+    <string name="other">Otros Servicios</string>
+    <string name="info">Información</string>
 </resources>

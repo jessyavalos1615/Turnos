@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:paddingLeft="30dp"
+    android:paddingLeft="65dp"
+    android:paddingTop="30dp"
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
-    <HorizontalScrollView
+    <ScrollView
         android:id="@+id/land_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <ScrollView
+    <HorizontalScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,40 +44,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
-                    android:text="@string/conection"
-=======
-                    android:text="@string/sends"
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-<<<<<<< HEAD
-=======
-                    android:text="@string/sends"
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-=======
                     android:text="@string/mails"
->>>>>>> parent of 0140645... comit 8
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
                     android:textSize="30sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:paddingLeft="50dp"
                     android:text="@string/pay"
                     android:textSize="30sp" />
 
                 <TextView
-                    android:layout_width="100px"
+                    android:layout_width="400px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="50dp"
-                    android:text="@string/contracts"
+                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="40dp"
+                    android:text="@string/prints"
                     android:textSize="30sp" />
 
             </TableRow>
@@ -92,17 +77,17 @@
                     android:layout_width="150dp"
                     android:layout_height="128dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
                     android:src="@drawable/ic_mail_outline_black_48dp" />
 
                 <ImageButton
                     android:id="@+id/service"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
+                    android:paddingRight="10dp"
                     android:src="@drawable/if_shopify_onlyne_payments_pay_online_send_money_credit_card_card_ecommerce_2325037" />
 
 
@@ -110,10 +95,10 @@
                     android:id="@+id/powers"
                     android:layout_width="68dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:paddingRight="10dp"
-                    android:src="@drawable/poderes_y_contratos" />
+                    android:paddingRight="20dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="35dp"
+                    android:src="@drawable/copy" />
             </TableRow>
 
             <Space
@@ -122,13 +107,13 @@
                 android:layout_height="70px" />
 
             <TableRow
-                android:id="@+id/R2"
                 android:layout_width="match_parent"
                 android:layout_height="29dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
                     android:layout_gravity="center"
                     android:text="@string/sends"
                     android:textSize="30sp" />
@@ -138,626 +123,195 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/prints"
+                    android:text="@string/Scan"
                     android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="100px"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="30dp"
-                    android:layout_weight="0"
-                    android:text="@string/acord"
+                    android:paddingLeft="50dp"
+                    android:text="@string/PassPort"
                     android:textSize="30sp" />
             </TableRow>
 
             <Space
-                android:id="@+id/S2"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
 
             <TableRow
-                android:id="@+id/R3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/sends"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="40dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
+                    android:paddingRight="10dp"
                     android:src="@drawable/if_97_2530016" />
 
                 <ImageButton
-                    android:id="@+id/copy"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/if_thefreeforty_withdraw_1243703" />
+                    android:paddingRight="10dp"
+                    android:src="@drawable/centro_de_copiado" />
 
                 <ImageButton
-                    android:id="@+id/acord"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/acuerdos" />
+                    android:paddingRight="20dp"
+                    android:src="@drawable/pasaporte" />
             </TableRow>
 
             <Space
-                android:id="@+id/S3"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="50px"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/Travel"
+                    android:paddingLeft="40dp"
+                    android:text="@string/LlenadoForms"
                     android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/Scan"
+                    android:text="@string/fax"
                     android:textSize="30sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/Tax"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/phone"
                     android:textSize="30sp" />
 
             </TableRow>
 
             <Space
-                android:id="@+id/S9"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
+
             <TableRow
-                android:id="@+id/R4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/travel"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/agencias_de_viajes" />
+                    android:paddingRight="10dp"
+                    android:src="@drawable/llenado_de_formas" />
 
 
                 <ImageButton
-                    android:id="@+id/scan"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/centro_de_copiado" />
+                    android:paddingRight="10dp"
+                    android:src="@drawable/fax" />
 
                 <ImageButton
-                    android:id="@+id/tax"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/if_13_tax_1871418" />
+                    android:paddingRight="10dp"
+                    android:src="@drawable/_ndice" />
             </TableRow>
 
             <Space
                 android:id="@+id/S4"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
                     android:layout_width="100px"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="20dp"
-                    android:text="@string/LegacyVehicule"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:layout_width="82dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="50dp"
-                    android:text="@string/LlenadoForms"
-                    android:textSize="30sp" />
-
-<<<<<<< HEAD
-                <TableRow
-                    android:id="@+id/R2"
-                    android:layout_width="match_parent"
-<<<<<<< HEAD
-                    android:layout_height="29dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/sends"
-                        android:textSize="30sp" />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/prints"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:layout_width="100px"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0"
-                        android:paddingLeft="30dp"
-                        android:text="@string/acord"
-                        android:textSize="30sp" />
-                </TableRow>
-
-                <Space
-                    android:id="@+id/S2"
-                    android:layout_width="match_parent"
-                    android:layout_height="70px" />
-
-                <TableRow
-                    android:id="@+id/R3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/sends"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/if_97_2530016" />
-
-                    <ImageButton
-                        android:id="@+id/copy"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/if_thefreeforty_withdraw_1243703" />
-
-                    <ImageButton
-                        android:id="@+id/acord"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/acuerdos" />
-                </TableRow>
-
-                <Space
-                    android:id="@+id/S3"
-                    android:layout_width="match_parent"
-                    android:layout_height="70px" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="50px"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/Travel"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:layout_width="82dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/Scan"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/Tax"
-                        android:textSize="30sp" />
-
-                </TableRow>
-
-                <Space
-                    android:id="@+id/S9"
-                    android:layout_width="match_parent"
-                    android:layout_height="70px" />
-
-                <TableRow
-                    android:id="@+id/R4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/travel"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/agencias_de_viajes" />
-
-
-                    <ImageButton
-                        android:id="@+id/scan"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/centro_de_copiado" />
-
-                    <ImageButton
-                        android:id="@+id/tax"
-                        android:layout_width="150dp"
-                        android:layout_height="128dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/if_13_tax_1871418" />
-                </TableRow>
-
-                <Space
-                    android:id="@+id/S4"
-=======
-                <TextView
->>>>>>> parent of 0140645... comit 8
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/MoneyOrd"
                     android:textSize="30sp" />
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="82dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="50dp"
+                    android:text="@string/othe"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:layout_width="100px"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingLeft="20dp"
-                        android:text="@string/LegacyVehicule"
-                        android:textSize="30sp" />
+                <TextView
+                    android:layout_width="82dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:text="@string/inf"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:layout_width="82dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingLeft="50dp"
-                        android:text="@string/LlenadoForms"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/MoneyOrd"
-                        android:textSize="30sp" />
-
-                </TableRow>
-
-                <Space
-                    android:id="@+id/S10"
-                    android:layout_width="match_parent"
-                    android:layout_height="70px" />
-=======
             </TableRow>
+
             <Space
-                android:id="@+id/S10"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
+
             <TableRow
-                android:id="@+id/R5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
->>>>>>> parent of 0140645... comit 8
 
                 <ImageButton
-                    android:id="@+id/car"
                     android:layout_width="150dp"
                     android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="35dp"
-                    android:src="@drawable/legalizacion_de_vehiculos" />
-
-                <ImageButton
-                    android:id="@+id/forms"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
                     android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/llenado_de_formas" />
-
-                <ImageButton
-                    android:id="@+id/moneyOrd"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
                     android:src="@drawable/money_orders" />
-            </TableRow>
-            <Space
-                android:id="@+id/S11"
-                android:layout_width="match_parent"
-                android:layout_height="70px" />
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/NP"
-                    android:textSize="30sp" />
 
-                <TextView
-                    android:layout_width="82dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="50dp"
-                    android:text="@string/phone"
-                    android:textSize="30sp" />
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="35dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="60dp"
+                    android:src="@drawable/if_other_1167997" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/pack"
-                    android:textSize="30sp" />
+                <ImageButton
+                    android:layout_width="150dp"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="35dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/if_info_circle_symbol_information_letter_1396823" />
 
             </TableRow>
 
             <Space
-                android:id="@+id/S5"
-                android:layout_width="match_parent"
-                android:layout_height="70px" />
-
-            <TableRow
-                android:id="@+id/R6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
-                    android:id="@+id/forms"
-=======
-                    android:id="@+id/notary"
->>>>>>> parent of 0140645... comit 8
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/notary_publick" />
-
-                <ImageButton
-                    android:id="@+id/phone"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/pago_servicios" />
-
-                <ImageButton
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
-                    android:id="@+id/photos"
-=======
-                    android:id="@+id/pack"
->>>>>>> parent of 0140645... comit 8
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/paqueteria" />
-            </TableRow>
-
-            <Space
-                android:id="@+id/S6"
-                android:layout_width="match_parent"
-                android:layout_height="70px" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="100px"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="25dp"
-                    android:text="@string/PassPort"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:layout_width="82dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="50dp"
-                    android:text="@string/PermissionTravel"
-                    android:textSize="30sp" />
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-=======
-                <TextView
-                    android:layout_width="100px"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingLeft="50dp"
-                    android:text="@string/TPV"
-                    android:textSize="30sp" />
->>>>>>> parent of 0140645... comit 8
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
-
-            </TableRow>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-=======
-            <Space
-                android:id="@+id/S7"
-                android:layout_width="match_parent"
-                android:layout_height="70px" />
->>>>>>> parent of 0140645... comit 8
-
-
-            <TableRow
-                android:id="@+id/R8"
-                android:layout_width="match_parent"
-                android:layout_height="50px">
-
-                <ImageButton
-                    android:id="@+id/photos"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/pasaporte" />
-
-                <ImageButton
-                    android:id="@+id/loan"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/permisos_para_viajar" />
-
-                <ImageButton
-                    android:id="@+id/temp_car"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/permisos_temporales_de_vehiculos" />
-            </TableRow>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="70px"/>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="match_parent"
-<<<<<<< HEAD
-                    android:layout_height="match_parent">
-
-=======
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="@string/Traduccion"
-                    android:textSize="30sp" />
->>>>>>> parent of 0140645... comit 8
-
-            </TableRow>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="70px"/>
-
-
-            <TableRow
-                android:id="@+id/R9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <ImageButton
-                    android:id="@+id/traduction"
-                    android:layout_width="150dp"
-                    android:layout_height="128dp"
-                    android:layout_marginLeft="60dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/traducciones" />
-
-
-            </TableRow>
-<<<<<<< HEAD
-
-            <Space
-                android:id="@+id/S6"
                 android:layout_width="match_parent"
                 android:layout_height="70px" />
 
 
 
-<<<<<<< HEAD
-=======
-            <Space
-                android:id="@+id/S6"
-                android:layout_width="match_parent"
-                android:layout_height="70px" />
-
-
-
->>>>>>> c1cd045847a9a85c902d4ec345449f7c8eeb6cbf
-=======
->>>>>>> parent of 0140645... comit 8
-=======
->>>>>>> parent of 5ca8c8f... Merge branch 'master' of https://github.com/ulises261996/Turnos
         </TableLayout>
-    </ScrollView>
     </HorizontalScrollView>
+    </ScrollView>
 </LinearLayout>

@@ -10,44 +10,4 @@
 
 
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:src="@drawable/ic_mail_outline_black_48dp"
-                android:layout_width="500px"
-                android:layout_height="match_parent"/>
-
-            <ImageView
-                android:src="@drawable/if_shopify_onlyne_payments_pay_online_send_money_credit_card_card_ecommerce_2325037"
-                android:layout_width="500px"
-                android:layout_height="match_parent"/>
-
-            <ImageView
-                android:src="@drawable/if_app_services_copy_amazon_email_259354"
-                android:layout_width="500px"
-                android:layout_height="match_parent" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:src="@drawable/if_97_2530016"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <ImageView
-                android:src="@drawable/if_thefreeforty_withdraw_1243703"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </TableRow>
-
-
-    </TableLayout>
 </LinearLayout>
