@@ -24,5 +24,6 @@
     <string name="fax">Fax</string>
     <string name="inf">Inforrmación</string>
     <string name="othe">Otros Servicios</string>
+    <string name="doc">Documentos</string>
 
 </resources>

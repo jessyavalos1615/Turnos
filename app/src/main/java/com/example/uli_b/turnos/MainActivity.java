@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
     int readBufferPosition;
     volatile boolean stopWorker;
 
+    ImageButton ib_mail, ib_services, ib_sends, ib_copy,
+                ib_scan, ib_passport, ib_forms, ib_fax,
+                ib_phone, ib_money, ib_other, ib_info,
+                ib_doc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +72,28 @@ public class MainActivity extends AppCompatActivity {
         }catch(IOException e) {
             e.printStackTrace();
         }
+
+        ib_doc = (ImageButton)findViewById(R.id.doc);
+        ib_other = (ImageButton)findViewById(R.id.others);
+
+        ib_other.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity_OtherS.class);
+                startActivity(intent);
+            }
+        });
+
+        ib_doc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity_Doc.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
     //Seccion de codigo para conexion web services
     private class InvocarServicioRegistrarAlumnos extends AsyncTask<Void, Integer, Void> {
 
@@ -98,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onProgressUpdate(Integer... values) {
         }
     }
-
-
     private void registrarServicio() {
         HashMap<String, String> parameters = new HashMap<String, String>();
         //Enviamos los parametros necesarios para el webservice
@@ -206,8 +231,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
     void openBT() throws IOException {
         try {
 
@@ -226,7 +249,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     void beginListenForData() {
         try {
             final Handler handler = new Handler();
@@ -295,7 +317,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     public void sendData() throws IOException {
         try {
 
@@ -322,7 +343,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     void closeBT() throws IOException {
         try {
             stopWorker = true;
@@ -333,8 +353,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void sendData(View view) {
     }
 }
