@@ -2,6 +2,7 @@ package com.example.uli_b.turnos;
 
 
 import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
@@ -58,11 +59,26 @@ public class MainActivity extends AppCompatActivity {
                 ib_scan, ib_passport, ib_forms, ib_fax,
                 ib_phone, ib_money, ib_other, ib_info,
                 ib_doc;
+    ImageButton btnservice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnservice = (ImageButton) findViewById(R.id.mail);
+        btnservice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    getdata("5");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
         try {
             conection = (TextView)findViewById(R.id.conexion);
@@ -95,104 +111,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Seccion de codigo para conexion web services
-    private class InvocarServicioRegistrarAlumnos extends AsyncTask<Void, Integer, Void> {
+    public void getdata(String param) throws IOException, JSONException {
+        //el metodo debera recibir el numero del servicio que sera el enviado al web service;
+        String sql="http://ulisescardenas78.xyz/index.php/?param1="+param;
+        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        URL url=null;
+        HttpURLConnection conn;
 
-        private int progreso;
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            registrarServicio();
-            return null;
+        url=new URL(sql);
+        conn=(HttpURLConnection) url.openConnection();
+
+        BufferedReader in =new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+
+        StringBuffer response=new StringBuffer();
+
+        String json=" ";
+
+        while ((inputLine=in.readLine())!= null){
+            response.append(inputLine);
         }
-        @Override
-        protected void onPostExecute(Void result) {
-            //bt1.setClickable(true);
-            if(result==null){
-                Toast.makeText(MainActivity.this,"Soy null", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(MainActivity.this,"Proceso existoso", Toast.LENGTH_SHORT).show();
-                jsonInsertLocal(result);
-            }
 
+        json=response.toString();
 
-        }
-        @Override
-        protected void onPreExecute() {
-            progreso = 0;
+        JSONArray jsonArr=null;
+        jsonArr=new JSONArray(json);
+        //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
+        //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
+        //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
+        //como recive un parametro debera agregarse
+        //asi: http://ulisescardenas78.xyz/index.php/?param1=1
+        for (int i=0;i<jsonArr.length();i++){
+            JSONObject jsonObject=jsonArr.getJSONObject(i);
 
-            // bt1.setClickable(false);
-        }
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-        }
-    }
-    private void registrarServicio() {
-        HashMap<String, String> parameters = new HashMap<String, String>();
-        //Enviamos los parametros necesarios para el webservice
-        String idServicio = "1";
-        parameters.put("param1",idServicio);
-        // parameters.put("param2", et2.getText().toString());
-        //parameters.put("param3", et3.getText().toString());
-        String response = "";
-        try {
-
-            URL url = new URL("https://ulises261996.000webhostapp.com/");
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-            OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(getPostDataString(parameters));
-            writer.flush();
-            writer.close();
-            os.close();
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                String line;
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((line = br.readLine()) != null) {
-                    response += line;
-                }
-            } else {
-                response = "";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (first) first = false;
-            else result.append("&");
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-        return result.toString();
-    }
-    private void jsonInsertLocal(Void result)  {
-
-
-
-        try {
-            JSONArray jsonarray = new JSONArray(result);
-            for(int i=0; i < jsonarray.length(); i++) {
-                JSONObject jsonobject = jsonarray.getJSONObject(i);
-                String idticket       = jsonobject.getString("idticket");
-                //String title    = jsonobject.getString("param2");
-                //String company  = jsonobject.getString("param3");
-                Toast.makeText(MainActivity.this,"Alumno registrado "+idticket, Toast.LENGTH_SHORT).show();
-
-                // lv12.setText(id);
-            }
-
-        } catch(JSONException e) {
-
+            conection.setText(jsonObject.optString("idticket"));
         }
     }
     //Terminacion de codigo del web services
