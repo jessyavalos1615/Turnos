@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:paddingLeft="50dp"
-    android:paddingTop="30dp"
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
@@ -22,7 +20,8 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginRight="400px">
 
                 <TextView
                     android:id="@+id/conexion"
@@ -31,6 +30,16 @@
                     android:layout_gravity="center"
                     android:text="@string/conection"
                     android:textSize="30sp" />
+
+                <TextView
+                android:layout_width="422px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="100px"
+                android:textStyle="bold"
+                android:text="@string/company"
+                android:textSize="50sp"/>
+
 
                 <Space
                     android:layout_width="match_parent"
@@ -60,8 +69,6 @@
                         android:layout_width="400px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:paddingLeft="40dp"
                         android:text="@string/prints"
                         android:textSize="30sp" />
 
@@ -96,9 +103,10 @@
                         android:id="@+id/copy"
                         android:layout_width="68dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="100px"
+                        android:layout_marginRight="100px"
                         android:paddingRight="20dp"
+                        android:paddingLeft="10px"
                         android:src="@drawable/copy" />
                 </TableRow>
 
@@ -128,10 +136,11 @@
                         android:textSize="30sp" />
 
                     <TextView
-                        android:layout_width="100px"
+                        android:layout_width="50px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:paddingLeft="50dp"
+                        android:layout_marginRight="100px"
+                        android:paddingLeft="50px"
                         android:text="@string/PassPort"
                         android:textSize="30sp" />
                 </TableRow>
@@ -158,17 +167,17 @@
                         android:layout_width="150dp"
                         android:layout_height="128dp"
                         android:layout_marginLeft="30dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="10dp"
+                        android:paddingLeft="20px"
                         android:src="@drawable/centro_de_copiado" />
 
                     <ImageButton
                         android:id="@+id/passport"
-                        android:layout_width="150dp"
+                        android:layout_width="50dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="100px"
+                        android:layout_marginRight="100px"
                         android:paddingRight="20dp"
+                        android:paddingLeft="10px"
                         android:src="@drawable/pasaporte" />
                 </TableRow>
 
@@ -196,10 +205,11 @@
                         android:textSize="30sp" />
 
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="50px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="200px"
+                        android:paddingRight="40px"
                         android:text="@string/phone"
                         android:textSize="30sp" />
 
@@ -227,17 +237,16 @@
                         android:id="@+id/fax"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="40dp"
                         android:paddingRight="10dp"
                         android:src="@drawable/fax" />
 
                     <ImageButton
                         android:id="@+id/phone"
-                        android:layout_width="150dp"
+                        android:layout_width="50dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="100px"
+                        android:layout_marginRight="100px"
                         android:paddingRight="10dp"
                         android:src="@drawable/_ndice" />
                 </TableRow>
@@ -270,8 +279,8 @@
                         android:layout_width="82dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:paddingLeft="50dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="200px"
+                        android:paddingRight="40px"
                         android:text="@string/othe"
                         android:textSize="30sp" />
 
@@ -299,7 +308,6 @@
                         android:layout_width="150dp"
                         android:layout_height="128dp"
                         android:layout_marginLeft="50dp"
-                        android:layout_marginRight="35dp"
                         android:paddingRight="10dp"
                         android:src="@drawable/poderes_y_contratos" />
 
@@ -307,8 +315,8 @@
                         android:id="@+id/others"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="46dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="100px"
+                        android:layout_marginRight="100px"
                         android:paddingBottom="60dp"
                         android:paddingRight="10dp"
                         android:src="@drawable/if_other_1167997" />
@@ -345,8 +353,8 @@
                         android:id="@+id/info"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginLeft="20px"
+                        android:layout_marginRight="35px"
                         android:paddingRight="10dp"
                         android:src="@drawable/if_info_circle_symbol_information_letter_1396823" />
 

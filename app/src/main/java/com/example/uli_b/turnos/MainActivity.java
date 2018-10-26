@@ -1,46 +1,38 @@
 package com.example.uli_b.turnos;
 
 
-import android.os.AsyncTask;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView conection;
+
+    String TAG = "MainActivity";
 
     BluetoothAdapter mBluetoothAdapter;
     BluetoothSocket mmSocket;
@@ -59,38 +51,37 @@ public class MainActivity extends AppCompatActivity {
                 ib_scan, ib_passport, ib_forms, ib_fax,
                 ib_phone, ib_money, ib_other, ib_info,
                 ib_doc;
-    ImageButton btnservice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnservice = (ImageButton) findViewById(R.id.mail);
-        btnservice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    getdata("5");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-            }
-        });
+        conection = (TextView)findViewById(R.id.conexion);
+        ib_mail = (ImageButton)findViewById(R.id.mail);
+        ib_doc = (ImageButton)findViewById(R.id.doc);
+        ib_other = (ImageButton)findViewById(R.id.others);
+        ib_info = (ImageButton)findViewById(R.id.info);
 
         try {
-            conection = (TextView)findViewById(R.id.conexion);
-
             findBT();
             openBT();
         }catch(IOException e) {
             e.printStackTrace();
+            Log.e(TAG, "onCreate: " + e.getMessage());
         }
 
-        ib_doc = (ImageButton)findViewById(R.id.doc);
-        ib_other = (ImageButton)findViewById(R.id.others);
+        ib_mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    sendData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_mail: " + e.getMessage());
+                }
+            }
+        });
 
         ib_other.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +99,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ib_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity_Info.class);
+                startActivity(intent);
+            }
+        });
     }
-
     //Seccion de codigo para conexion web services
     public void getdata(String param) throws IOException, JSONException {
         //el metodo debera recibir el numero del servicio que sera el enviado al web service;
@@ -149,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //Terminacion de codigo del web services
-
     void findBT() {
 
         try {
@@ -171,8 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if (device.getName().equals("RPP300")) {
+                    if (device.getName().equals("clatinos") || device.getName().equals("tecycom1")) {
                         mmDevice = device;
+                        Log.e(TAG, "Find BT: "+ device.getName());
                         break;
                     }
                 }
@@ -182,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
         }catch(Exception e){
             e.printStackTrace();
+            Log.e(TAG, "Find BT: " + e.getMessage());
         }
     }
     void openBT() throws IOException {
@@ -200,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "Open BT: " + e.getMessage());
         }
     }
     void beginListenForData() {
@@ -268,25 +267,26 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "For data: " + e.getMessage());
         }
     }
     public void sendData() throws IOException {
         try {
 
             // the text typed by the user
-            //String msg = myTextbox.getText().toString();
-            //msg += "\n";
+            String msg = "Hola";
+            msg += "\n";
 
-            //mmOutputStream.write(msg.getBytes());
+            mmOutputStream.write(msg.getBytes());
 
             // tell the user data were sent
             conection.setText("Data sent.");
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "Send data: " + e.getMessage());
         }
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -294,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
             closeBT();
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e(TAG, "onDestroy: " + e.getMessage());
         }
     }
     void closeBT() throws IOException {
@@ -305,6 +306,7 @@ public class MainActivity extends AppCompatActivity {
             conection.setText("Bluetooth Closed");
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(TAG, "Close BT " + e.getMessage());
         }
     }
 }
