@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +30,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView conection;
 
     String TAG = "MainActivity";
 
@@ -57,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        conection = (TextView)findViewById(R.id.conexion);
-        ib_mail = (ImageButton)findViewById(R.id.mail);
-        ib_doc = (ImageButton)findViewById(R.id.doc);
-        ib_other = (ImageButton)findViewById(R.id.others);
-        ib_info = (ImageButton)findViewById(R.id.info);
+        ib_mail = (ImageButton)findViewById(R.id.mail);       ib_services = (ImageButton)findViewById(R.id.services);
+        ib_sends = (ImageButton)findViewById(R.id.sends);     ib_copy = (ImageButton)findViewById(R.id.copy);
+        ib_scan = (ImageButton)findViewById(R.id.scan);       ib_passport = (ImageButton)findViewById(R.id.passport);
+        ib_forms = (ImageButton)findViewById(R.id.forms);     ib_phone = (ImageButton)findViewById(R.id.phone);
+        ib_doc = (ImageButton)findViewById(R.id.doc);         ib_other = (ImageButton)findViewById(R.id.others);
+        ib_info = (ImageButton)findViewById(R.id.info);       ib_fax = (ImageButton)findViewById(R.id.fax);
+        ib_money = (ImageButton)findViewById(R.id.money);
 
         try {
             findBT();
@@ -83,11 +84,80 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ib_money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_fax.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_forms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_passport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_sends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ib_services.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         ib_other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity_OtherS.class);
-                startActivity(intent);
+
             }
         });
 
@@ -102,8 +172,7 @@ public class MainActivity extends AppCompatActivity {
         ib_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Activity_Info.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -141,8 +210,6 @@ public class MainActivity extends AppCompatActivity {
         //asi: http://ulisescardenas78.xyz/index.php/?param1=1
         for (int i=0;i<jsonArr.length();i++){
             JSONObject jsonObject=jsonArr.getJSONObject(i);
-
-            conection.setText(jsonObject.optString("idticket"));
         }
     }
     //Terminacion de codigo del web services
@@ -152,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
             if(mBluetoothAdapter == null) {
-                conection.setText("No bluetooth adapter available");
+                Toast.makeText(this, "Bluetooth no support device.", Toast.LENGTH_SHORT).show();
             }
 
             if(!mBluetoothAdapter.isEnabled()) {
@@ -171,11 +238,13 @@ public class MainActivity extends AppCompatActivity {
                         mmDevice = device;
                         Log.e(TAG, "Find BT: "+ device.getName());
                         break;
+                    }else{
+
                     }
                 }
             }
 
-            conection.setText("Bluetooth device found.");
+            Toast.makeText(this, "Bluetooth device found.", Toast.LENGTH_SHORT).show();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -194,11 +263,12 @@ public class MainActivity extends AppCompatActivity {
 
             beginListenForData();
 
-            conection.setText("Bluetooth Opened");
+            Toast.makeText(this, "Bluetooth Opened", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Open BT: " + e.getMessage());
+            Toast.makeText(this, "Bluetooth not conected.", Toast.LENGTH_SHORT).show();
         }
     }
     void beginListenForData() {
@@ -245,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
                                         // tell the user data were sent to bluetooth printer device
                                         handler.post(new Runnable() {
                                             public void run() {
-                                                conection.setText(data);
+                                                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -280,11 +350,12 @@ public class MainActivity extends AppCompatActivity {
             mmOutputStream.write(msg.getBytes());
 
             // tell the user data were sent
-            conection.setText("Data sent.");
+            //Toast.makeText(this, "Data sent.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Send data: " + e.getMessage());
+            Toast.makeText(this, "Data doesn't sent.", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -303,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
             mmOutputStream.close();
             mmInputStream.close();
             mmSocket.close();
-            conection.setText("Bluetooth Closed");
+            Toast.makeText(this, "Bluetooth Closed", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Close BT " + e.getMessage());

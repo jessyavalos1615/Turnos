@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10px"
     android:background="@color/background"
     android:paddingBottom="20dp"
     tools:context=".MainActivity">
@@ -21,20 +22,13 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="400px">
-
-                <TextView
-                    android:id="@+id/conexion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/conection"
-                    android:textSize="30sp" />
+                android:layout_marginRight="200px">
 
                 <TextView
                 android:layout_width="422px"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:paddingTop="25px"
                 android:paddingLeft="100px"
                 android:textStyle="bold"
                 android:text="@string/company"

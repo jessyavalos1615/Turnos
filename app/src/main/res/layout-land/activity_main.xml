@@ -8,11 +8,6 @@
     android:paddingLeft="50px"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <Toolbar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
     <ScrollView
         android:id="@+id/land_scroll"
         android:layout_width="match_parent"
@@ -25,15 +20,8 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/conexion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/conection"
-                    android:textSize="30sp" />
+                android:layout_height="match_parent"
+                android:paddingTop="10px">
 
                 <TextView
                     android:layout_width="422px"
@@ -81,7 +69,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:paddingLeft="50dp"
+                        android:paddingLeft="20px"
                         android:text="@string/sends"
                         android:textSize="30sp" />
 
@@ -91,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/Scan"
+                        android:paddingRight="20px"
                         android:textSize="30sp" />
 
                 </TableRow>
@@ -159,10 +148,11 @@
                     android:layout_height="202dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="100px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/mails"
+                        android:text="@string/PassPort"
+                        android:paddingLeft="50dp"
                         android:textSize="30sp" />
 
                     <TextView
@@ -192,6 +182,8 @@
                         android:layout_width="100px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:paddingRight="40px"
+                        android:paddingLeft="30px"
                         android:text="@string/MoneyOrd"
                         android:textSize="30sp" />
 
@@ -238,7 +230,7 @@
                         android:id="@+id/phone"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginRight="35dp"
                         android:baselineAligned="false"
                         android:paddingRight="10dp"
