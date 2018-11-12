@@ -1,52 +1,489 @@
 package com.example.uli_b.turnos;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Set;
+import java.util.UUID;
 
 public class Activity_OtherS extends AppCompatActivity {
 
+    String TAG = "Activity_OtherS";
 
+    ImageButton ib_packet, ib_temporal,
+                ib_vehicule, ib_travel;
+
+    Handler handler;
+
+    MainActivity main;
+
+    public BluetoothAdapter mBluetoothAdapter;
+    public BluetoothSocket mmSocket;
+    public BluetoothDevice mmDevice;
+
+    // needed for communication to bluetooth device / network
+    public OutputStream mmOutputStream;
+    public InputStream mmInputStream;
+    public Thread workerThread;
+
+    public byte[] readBuffer;
+    public int readBufferPosition;
+    public volatile boolean stopWorker;
+
+    ProgressBar progressbar;
+
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__other_s);
 
-        ImageButton ib_packet, ib_temporal, ib_vehicule, ib_travel;
-
         ib_packet = (ImageButton)findViewById(R.id.packet);
         ib_temporal = (ImageButton)findViewById(R.id.temporal);
         ib_travel = (ImageButton)findViewById(R.id.travel);
         ib_vehicule = (ImageButton)findViewById(R.id.vehicule);
+        progressbar = (ProgressBar)findViewById(R.id.progressbar);
+        layout = (LinearLayout)findViewById(R.id.others);
+        final Intent intent = new Intent(Activity_OtherS.this, MainActivity.class);
+        main = new MainActivity();
+        handler = new Handler();
+
+        try{
+            findBT();
+            openBT();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.VISIBLE);
+                }
+            }, 3000);
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+        }
 
         ib_packet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //14
+                    progressbar.setVisibility(View.VISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
+                    getdata("14", "Paqueteria");
+                    startActivity(intent);
+                    closeBT();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_packet: " + e.getMessage());
+                    Toast.makeText(Activity_OtherS.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            layout.setVisibility(View.VISIBLE);
+                        }
+                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_temporal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //14
+                    progressbar.setVisibility(View.VISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
+                    getdata("14", "Permisos temporales");
+                    startActivity(intent);
+                    closeBT();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_temporal: " + e.getMessage());
+                    Toast.makeText(Activity_OtherS.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            layout.setVisibility(View.VISIBLE);
+                        }
+                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_travel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //14
+                    progressbar.setVisibility(View.VISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
+                    getdata("14", "Agencia de viajes");
+                    startActivity(intent);
+                    closeBT();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_travel: " + e.getMessage());
+                    Toast.makeText(Activity_OtherS.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            layout.setVisibility(View.VISIBLE);
+                        }
+                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_vehicule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //14
+                    progressbar.setVisibility(View.VISIBLE);
+                    layout.setVisibility(View.INVISIBLE);
+                    getdata("14", "Legalización de vehículos");
+                    startActivity(intent);
+                    closeBT();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_vehicule: " + e.getMessage());
+                    Toast.makeText(Activity_OtherS.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            layout.setVisibility(View.VISIBLE);
+                        }
+                    }, 2000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
+    public void getdata(String idServicio,String Servicio) throws IOException, JSONException {
+        try {
+            //el metodo debera recibir el numero del servicio que sera el enviado al web service;
+            Log.e(TAG,"Valores que recive del boton: "+idServicio+" "+Servicio);
+            String sql = "http://centrodeservicioslatinos.xyz/index2.php/?param1=" + idServicio;
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            URL url = null;
+            HttpURLConnection conn;
+
+            url = new URL(sql);
+            conn = (HttpURLConnection) url.openConnection();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+
+            StringBuffer response = new StringBuffer();
+
+            String json = " ";
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+
+            json = response.toString();
+            Log.e(TAG, "json: "+ json);
+            JSONArray jsonArr = null;
+            jsonArr = new JSONArray(json);
+            Log.e(TAG, "json array: "+ jsonArr);
+            //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
+            //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
+            //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
+            //como recive un parametro debera agregarse
+            //asi: http://ulisescardenas78.xyz/index.php/?param1=1
+            for (int i = 0; i < jsonArr.length(); i++) {
+                JSONObject jsonObject = jsonArr.getJSONObject(i);
+                String Departamento;
+                if (jsonObject.get("idServicio").equals("1")) {
+                    Departamento = "Caja ";
+                } else {
+                    Departamento = "Escritorio ";
+                }
+                Log.e(TAG, jsonObject.getString("idticket") );
+                sendData((String) jsonObject.get("idticket"), Servicio, Departamento);
+
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "Data don´t send", Toast.LENGTH_SHORT).show();
+            Log.e("getdata", e.getMessage());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.VISIBLE);
+                }
+            }, 2000);
+        }
+    }
+    public void findBT() {
+
+        try {
+            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+            if(mBluetoothAdapter == null) {
+                Toast.makeText(this, "Bluetooth no support device.", Toast.LENGTH_SHORT).show();
+            }
+
+            if(!mBluetoothAdapter.isEnabled()) {
+                Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBluetooth, 0);
+            }
+
+            Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+
+            if(pairedDevices.size() > 0) {
+                for (BluetoothDevice device : pairedDevices) {
+
+                    // RPP300 is the name of the bluetooth printer device
+                    // we got this name from the list of paired devices
+                    if ( device.getName().equals("tecycom1")) {
+                        mmDevice = device;
+                        Log.e(TAG, "Find BT: "+ device.getName());
+                        break;
+                    }else{
+
+                    }
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            Log.e(TAG, "Find BT: " + e.getMessage());
+        }
+    }
+    public void openBT() throws IOException {
+        try {
+
+            // Standard SerialPortService ID
+            UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+            mmSocket = mmDevice.createRfcommSocketToServiceRecord(uuid);
+            mmSocket.connect();
+            mmOutputStream = mmSocket.getOutputStream();
+            mmInputStream = mmSocket.getInputStream();
+
+            beginListenForData();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "Open BT: " + e.getMessage());
+            Toast.makeText(this, "Bluetooth not conected.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void beginListenForData(){
+        try {
+            final Handler handler = new Handler();
+
+            // this is the ASCII code for a newline character
+            final byte delimiter = 10;
+
+            stopWorker = false;
+            readBufferPosition = 0;
+            readBuffer = new byte[1024];
+
+            workerThread = new Thread(new Runnable() {
+                public void run() {
+
+                    while (!Thread.currentThread().isInterrupted() && !stopWorker) {
+
+                        try {
+
+                            int bytesAvailable = mmInputStream.available();
+
+                            if (bytesAvailable > 0) {
+
+                                byte[] packetBytes = new byte[bytesAvailable];
+                                mmInputStream.read(packetBytes);
+
+                                for (int i = 0; i < bytesAvailable; i++) {
+
+                                    byte b = packetBytes[i];
+                                    if (b == delimiter) {
+
+                                        byte[] encodedBytes = new byte[readBufferPosition];
+                                        System.arraycopy(
+                                                readBuffer, 0,
+                                                encodedBytes, 0,
+                                                encodedBytes.length
+                                        );
+
+                                        // specify US-ASCII encoding
+                                        final String data = new String(encodedBytes, "US-ASCII");
+                                        readBufferPosition = 0;
+
+                                        // tell the user data were sent to bluetooth printer device
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(Activity_OtherS.this, data, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                    } else {
+                                        readBuffer[readBufferPosition++] = b;
+                                    }
+                                }
+                            }
+
+                        } catch (IOException ex) {
+                            stopWorker = true;
+                        }
+
+                    }
+                }
+            });
+
+            workerThread.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "For data: " + e.getMessage());
+        }
+    }
+    public void sendData(String num,String Servicio,String Departamento) throws IOException {
+
+        try {
+
+
+            String  msg2 =
+                    "! 0 200 100 1 1\n" +
+                            "IN-INCHES\n" +
+                            "T 8 0 0 0 ****************\n"+
+
+                            "IN-DOTS\n" +
+                            "T 4 0 0 0 ****************\n"+
+                            "T 4 0 0 13    CS latinos\n" +
+                            "T 4 0  0 50  " +Servicio+"\n" +
+                            "T 4 0  0 51 ______________ \n" +
+                            "T 4 0 0 90  " +Departamento+"\n"+
+                            "T 4 0 0 130 turno: "+num+" \n" +
+                            "T 4 0 0 160 ****************\n"+
+                            "PRINT\n";
+
+            mmOutputStream.write(msg2.getBytes());
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.VISIBLE);
+                }
+            }, 2000);
+
+            //mmOutputStream.write(msg.getBytes());
+
+            //tell the user data were sent
+            //Toast.makeText(this, "Data sent.", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "Send data: " + e.getMessage());
+            Toast.makeText(this, "Data doesn't sent.", Toast.LENGTH_SHORT).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    layout.setVisibility(View.VISIBLE);
+                }
+            }, 3000);
+        }
+    }
+
+    private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_OFF:
+                        Toast.makeText(context, "Bluetooth off. Prepare to turn on.", Toast.LENGTH_SHORT).show();
+                        findBT();
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_OFF:
+                        Toast.makeText(context, "Bluetooth turning off.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        Toast.makeText(context, "Bluetooth on.", Toast.LENGTH_SHORT).show();
+                        try {
+                            openBT();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_ON:
+                        Toast.makeText(context, "Bluetooth turning on.", Toast.LENGTH_SHORT).show();
+
+                        break;
+                }
+            }
+        }
+    };
+
+    private final BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case BluetoothDevice.ACTION_ACL_CONNECTED:
+                    Toast.makeText(context, "Bluetooth is connected.", Toast.LENGTH_SHORT).show();
+                    break;
+                case BluetoothDevice.ACTION_ACL_DISCONNECTED:
+                    Toast.makeText(context, "Bluetooth is disconnected. Prepare to connect.", Toast.LENGTH_SHORT).show();
+                    try {
+                        findBT();
+                        openBT();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        }
+    };
+
+    void closeBT(){
+        try {
+            mmSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

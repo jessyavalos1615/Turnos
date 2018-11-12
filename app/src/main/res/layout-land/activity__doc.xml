@@ -5,156 +5,174 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="30dp"
-    android:paddingBottom="20dp"
-    android:orientation="vertical"
     tools:context=".Activity_Doc">
 
-    <TextView
-        android:text="@string/doc"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:paddingLeft="450dp"/>
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="150px">
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20px" />
-
-    <TableRow
-        android:paddingLeft="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="202dp">
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/doc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/Traduccion"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50px"
-            android:paddingLeft="50dp"
-            android:text="@string/NP"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/Tax"
-            android:textSize="30sp" />
-    </TableRow>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25px" />
-
-    <TableRow
-        android:paddingLeft="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="202dp">
-
-        <ImageButton
-            android:id="@+id/traslate"
-            android:layout_width="150dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="30dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/traducciones" />
-
-        <ImageButton
-            android:id="@+id/notary"
-            android:layout_width="150dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="90dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/notary_publick" />
-
-        <ImageButton
-            android:id="@+id/tax"
-            android:layout_width="150dp"
-            android:layout_height="128dp"
-            android:layout_marginLeft="100dp"
-            android:paddingLeft="25px"
-            android:src="@drawable/if_13_tax_1871418" />
-    </TableRow>
-
-        <TableRow
-            android:paddingLeft="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="202dp"
-            android:paddingTop="25px"
-            android:paddingBottom="25px">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="225dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="50dp"
-                android:text="@string/acord"
-                android:textSize="30sp" />
+                android:paddingLeft="450dp"
+                android:text="@string/doc"
+                android:textSize="50sp" />
 
-            <TextView
-                android:layout_width="100px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/contracts"
-                android:layout_marginLeft="50px"
-                android:paddingLeft="30dp"
-                android:textSize="30sp" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="150px">
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10px"
-                android:paddingLeft="50dp"
-                android:text="@string/PermissionTravel"
-                android:textSize="30sp" />
-        </TableRow>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20px" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="202dp"
-            android:paddingLeft="50dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="202dp"
+                    android:paddingLeft="50dp">
 
-            <ImageButton
-                android:id="@+id/acords"
-                android:layout_width="150dp"
-                android:layout_height="128dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="30dp"
-                android:paddingRight="10dp"
-                android:src="@drawable/acuerdos" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/Traduccion"
+                        android:textSize="30sp" />
 
-            <ImageButton
-                android:id="@+id/powers"
-                android:layout_width="150dp"
-                android:layout_height="128dp"
-                android:layout_marginLeft="90dp"
-                android:paddingRight="10dp"
-                android:src="@drawable/poderes_y_contratos" />
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50px"
+                        android:paddingLeft="50dp"
+                        android:text="@string/NP"
+                        android:textSize="30sp" />
 
-            <ImageButton
-                android:id="@+id/permission"
-                android:layout_width="150dp"
-                android:layout_height="128dp"
-                android:layout_marginLeft="90dp"
-                android:paddingRight="10dp"
-                android:src="@drawable/permisos_para_viajar" />
-        </TableRow>
-    </TableLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/Tax"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="25px" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="202dp"
+                    android:paddingLeft="50dp">
+
+                    <ImageButton
+                        android:id="@+id/traslate"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="30dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/traducciones" />
+
+                    <ImageButton
+                        android:id="@+id/notary"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="90dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/notary_publick" />
+
+                    <ImageButton
+                        android:id="@+id/tax"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="100dp"
+                        android:paddingLeft="25px"
+                        android:src="@drawable/if_13_tax_1871418" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="202dp"
+                    android:paddingBottom="25px"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="25px">
+
+                    <TextView
+                        android:layout_width="225dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="50dp"
+                        android:text="@string/acord"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="100px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50px"
+                        android:paddingLeft="30dp"
+                        android:text="@string/contracts"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10px"
+                        android:paddingLeft="50dp"
+                        android:text="@string/PermissionTravel"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="202dp"
+                    android:paddingLeft="50dp">
+
+                    <ImageButton
+                        android:id="@+id/acords"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="30dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/acuerdos" />
+
+                    <ImageButton
+                        android:id="@+id/powers"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="90dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/poderes_y_contratos" />
+
+                    <ImageButton
+                        android:id="@+id/permission"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_marginLeft="90dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/permisos_para_viajar" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+    </FrameLayout>
 </LinearLayout>

@@ -4,7 +4,10 @@ package com.example.uli_b.turnos;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -12,7 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -33,23 +37,29 @@ public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity";
 
-    BluetoothAdapter mBluetoothAdapter;
-    BluetoothSocket mmSocket;
-    BluetoothDevice mmDevice;
+    public BluetoothAdapter mBluetoothAdapter;
+    public BluetoothSocket mmSocket;
+    public BluetoothDevice mmDevice;
 
     // needed for communication to bluetooth device / network
-    OutputStream mmOutputStream;
-    InputStream mmInputStream;
-    Thread workerThread;
+    public OutputStream mmOutputStream;
+    public InputStream mmInputStream;
+    public Thread workerThread;
 
-    byte[] readBuffer;
-    int readBufferPosition;
-    volatile boolean stopWorker;
+    Handler handler;
+
+    public byte[] readBuffer;
+    public int readBufferPosition;
+    public volatile boolean stopWorker;
 
     ImageButton ib_mail, ib_services, ib_sends, ib_copy,
-                ib_scan, ib_passport, ib_forms, ib_fax,
-                ib_phone, ib_money, ib_other, ib_info,
-                ib_doc;
+            ib_scan, ib_passport, ib_forms, ib_fax,
+            ib_phone, ib_money, ib_other, ib_info,
+            ib_doc;
+
+    ProgressBar progressbar;
+
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +72,29 @@ public class MainActivity extends AppCompatActivity {
         ib_forms = (ImageButton)findViewById(R.id.forms);     ib_phone = (ImageButton)findViewById(R.id.phone);
         ib_doc = (ImageButton)findViewById(R.id.doc);         ib_other = (ImageButton)findViewById(R.id.others);
         ib_info = (ImageButton)findViewById(R.id.info);       ib_fax = (ImageButton)findViewById(R.id.fax);
-        ib_money = (ImageButton)findViewById(R.id.money);
+        ib_money = (ImageButton)findViewById(R.id.money);     progressbar = (ProgressBar)findViewById(R.id.progressbar);
+        scrollView = (ScrollView)findViewById(R.id.land_scroll); handler = new Handler();
+
+        IntentFilter filter1 = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mBroadcastReceiver1, filter1);
+
+        IntentFilter filter3 = new IntentFilter();
+        filter3.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        filter3.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        registerReceiver(mBroadcastReceiver3, filter3);
 
         try {
+            progressbar.setVisibility(View.VISIBLE);
+            scrollView.setVisibility(View.INVISIBLE);
             findBT();
             openBT();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                }
+            }, 2000);
         }catch(IOException e) {
             e.printStackTrace();
             Log.e(TAG, "onCreate: " + e.getMessage());
@@ -76,144 +104,356 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    sendData();
+                    //5
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("5","Correo Electronico");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_mail: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         });
 
         ib_money.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
+                try {
+                    //4
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("4","Money Orders");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_money: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //2
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("2","Recargas ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_phone: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_fax.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //6
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("6","Fax publico");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_fax: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_forms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //7
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("7","Llenado de formas");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_forms: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_passport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //9
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("9","Passaport");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_passport: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //8
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("8","Escaneo doc.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_scan: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-        ib_scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
         ib_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //15
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("15","Centro de copiado ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_copy: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_sends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //1
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("12","Envios de dinero ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_sends: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_services.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //3
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("3","Pago servicios");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_services: " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+                    }, 5000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         ib_other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                progressbar.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.INVISIBLE);
+                closeBT();
+                Intent intent = new Intent(MainActivity.this, Activity_OtherS.class);
+                startActivity(intent);
             }
         });
 
         ib_doc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbar.setVisibility(View.VISIBLE);
+                scrollView.setVisibility(View.INVISIBLE);
+                closeBT();
                 Intent intent = new Intent(MainActivity.this, Activity_Doc.class);
                 startActivity(intent);
+
             }
         });
 
         ib_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                try {
+                    //10
+                    progressbar.setVisibility(View.VISIBLE);
+                    scrollView.setVisibility(View.INVISIBLE);
+                    getdata("5","Informacion");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "ib_info: " + e.getMessage());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
     //Seccion de codigo para conexion web services
-    public void getdata(String param) throws IOException, JSONException {
-        //el metodo debera recibir el numero del servicio que sera el enviado al web service;
-        String sql="http://ulisescardenas78.xyz/index.php/?param1="+param;
-        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        URL url=null;
-        HttpURLConnection conn;
+    public void getdata(String idServicio,String Servicio) throws IOException, JSONException {
+        try {
+            //el metodo debera recibir el numero del servicio que sera el enviado al web service;
+            Log.e(TAG,"Valores que recive del boton: "+idServicio+" "+Servicio);
+            String sql = "http://centrodeservicioslatinos.xyz/index2.php/?param1=" + idServicio;
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            URL url = null;
+            HttpURLConnection conn;
 
-        url=new URL(sql);
-        conn=(HttpURLConnection) url.openConnection();
+            url = new URL(sql);
+            conn = (HttpURLConnection) url.openConnection();
 
-        BufferedReader in =new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String inputLine;
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
 
-        StringBuffer response=new StringBuffer();
+            StringBuffer response = new StringBuffer();
 
-        String json=" ";
+            String json = " ";
 
-        while ((inputLine=in.readLine())!= null){
-            response.append(inputLine);
-        }
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
 
-        json=response.toString();
+            json = response.toString();
+            Log.e(TAG, "json: "+ json);
+            JSONArray jsonArr = null;
+            jsonArr = new JSONArray(json);
+            Log.e(TAG, "json array: "+ jsonArr);
+            //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
+            //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
+            //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
+            //como recive un parametro debera agregarse
+            //asi: http://ulisescardenas78.xyz/index.php/?param1=1
+            for (int i = 0; i < jsonArr.length(); i++) {
+                JSONObject jsonObject = jsonArr.getJSONObject(i);
+                String Departamento;
+                if (jsonObject.get("idServicio").equals("1")) {
+                    Departamento = "Caja ";
+                } else {
+                    Departamento = "Escritorio ";
+                }
+                Log.e(TAG, jsonObject.getString("idticket") );
+                sendData((String) jsonObject.get("idticket"), Servicio, Departamento);
 
-        JSONArray jsonArr=null;
-        jsonArr=new JSONArray(json);
-        //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
-        //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
-        //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
-        //como recive un parametro debera agregarse
-        //asi: http://ulisescardenas78.xyz/index.php/?param1=1
-        for (int i=0;i<jsonArr.length();i++){
-            JSONObject jsonObject=jsonArr.getJSONObject(i);
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "Data don´t send", Toast.LENGTH_SHORT).show();
+            Log.e("getdata", e.getMessage());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                }
+            }, 2000);
         }
     }
     //Terminacion de codigo del web services
-    void findBT() {
+    public void findBT() {
 
         try {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -234,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if (device.getName().equals("clatinos") || device.getName().equals("tecycom1")) {
+                    if ( device.getName().equals("tecycom1")) {
                         mmDevice = device;
                         Log.e(TAG, "Find BT: "+ device.getName());
                         break;
@@ -244,14 +484,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            Toast.makeText(this, "Bluetooth device found.", Toast.LENGTH_SHORT).show();
-
         }catch(Exception e){
             e.printStackTrace();
             Log.e(TAG, "Find BT: " + e.getMessage());
         }
     }
-    void openBT() throws IOException {
+    public void openBT() throws IOException {
         try {
 
             // Standard SerialPortService ID
@@ -263,15 +501,13 @@ public class MainActivity extends AppCompatActivity {
 
             beginListenForData();
 
-            Toast.makeText(this, "Bluetooth Opened", Toast.LENGTH_SHORT).show();
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Open BT: " + e.getMessage());
             Toast.makeText(this, "Bluetooth not conected.", Toast.LENGTH_SHORT).show();
         }
     }
-    void beginListenForData() {
+    public void beginListenForData(){
         try {
             final Handler handler = new Handler();
 
@@ -340,44 +576,113 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "For data: " + e.getMessage());
         }
     }
-    public void sendData() throws IOException {
+    public void sendData(String num,String Servicio,String Departamento) throws IOException {
+
         try {
 
-            // the text typed by the user
-            String msg = "Hola";
-            msg += "\n";
 
-            mmOutputStream.write(msg.getBytes());
+            String  msg2 =
+                            "! 0 200 100 1 1\n" +
+                            "IN-INCHES\n" +
+                            "T 8 0 0 0 ****************\n"+
 
-            // tell the user data were sent
+                            "IN-DOTS\n" +
+                            "T 4 0 0 0 ****************\n"+
+                            "T 4 0 0 13    CS latinos\n" +
+                            "T 4 0  0 50  " +Servicio+"\n" +
+                                    "T 4 0  0 51 ______________ \n" +
+                            "T 4 0 0 90  " +Departamento+"\n"+
+                            "T 4 0 0 130 turno: "+num+" \n" +
+                            "T 4 0 0 160 ****************\n"+
+                            "PRINT\n";
+
+            mmOutputStream.write(msg2.getBytes());
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                }
+            }, 2000);
+
+            //mmOutputStream.write(msg.getBytes());
+
+            //tell the user data were sent
             //Toast.makeText(this, "Data sent.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Send data: " + e.getMessage());
             Toast.makeText(this, "Data doesn't sent.", Toast.LENGTH_SHORT).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    scrollView.setVisibility(View.VISIBLE);
+                }
+            }, 3000);
         }
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+
+    private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_OFF:
+                        Toast.makeText(context, "Bluetooth off. Prepare to turn on.", Toast.LENGTH_SHORT).show();
+                        findBT();
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_OFF:
+                        Toast.makeText(context, "Bluetooth turning off.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        Toast.makeText(context, "Bluetooth on.", Toast.LENGTH_SHORT).show();
+                        try {
+                            openBT();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_ON:
+                        Toast.makeText(context, "Bluetooth turning on.", Toast.LENGTH_SHORT).show();
+
+                        break;
+                }
+            }
+        }
+    };
+
+    private final BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case BluetoothDevice.ACTION_ACL_CONNECTED:
+                    Toast.makeText(context, "Bluetooth is connected.", Toast.LENGTH_SHORT).show();
+                    break;
+                case BluetoothDevice.ACTION_ACL_DISCONNECTED:
+                    Toast.makeText(context, "Bluetooth is disconnected. Prepare to connect.", Toast.LENGTH_SHORT).show();
+                    try {
+                        findBT();
+                        openBT();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        }
+    };
+
+    void closeBT(){
         try {
-            closeBT();
+            mmSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e(TAG, "onDestroy: " + e.getMessage());
         }
     }
-    void closeBT() throws IOException {
-        try {
-            stopWorker = true;
-            mmOutputStream.close();
-            mmInputStream.close();
-            mmSocket.close();
-            Toast.makeText(this, "Bluetooth Closed", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "Close BT " + e.getMessage());
-        }
-    }
+
 }
