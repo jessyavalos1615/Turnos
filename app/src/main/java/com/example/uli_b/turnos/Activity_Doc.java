@@ -1,14 +1,17 @@
 package com.example.uli_b.turnos;
 
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -54,13 +57,12 @@ public class Activity_Doc extends AppCompatActivity {
 
     ProgressBar progressbar;
 
-
     Handler handler;
 
     LinearLayout layout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__doc);
 
@@ -86,7 +88,7 @@ public class Activity_Doc extends AppCompatActivity {
                     progressbar.setVisibility(View.INVISIBLE);
                     layout.setVisibility(View.VISIBLE);
                 }
-            }, 3000);
+            }, 2000);
         }catch (Exception e){
             Log.e(TAG, e.getMessage());
         }
@@ -203,6 +205,59 @@ public class Activity_Doc extends AppCompatActivity {
         ib_notary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Doc.this);
+                builder.setMessage("¿Es la primera vez que recurre a nuestro servicio de notaria?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            progressbar.setVisibility(View.VISIBLE);
+                            layout.setVisibility(View.INVISIBLE);
+                            getdata("12", "Notary");
+                            startActivity(intent);
+                            closeBT();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.e(TAG, "ib_notary: " + e.getMessage());
+                            Toast.makeText(Activity_Doc.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressbar.setVisibility(View.INVISIBLE);
+                                    layout.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            progressbar.setVisibility(View.VISIBLE);
+                            layout.setVisibility(View.INVISIBLE);
+                            getdata("13", "Notary");
+                            startActivity(intent);
+                            closeBT();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.e(TAG, "ib_notary: " + e.getMessage());
+                            Toast.makeText(Activity_Doc.this, "Problem with the conetion.", Toast.LENGTH_SHORT).show();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressbar.setVisibility(View.INVISIBLE);
+                                    layout.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                /*
                 try {
                     //14
                     progressbar.setVisibility(View.VISIBLE);
@@ -223,7 +278,7 @@ public class Activity_Doc extends AppCompatActivity {
                     }, 2000);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
 
@@ -333,7 +388,7 @@ public class Activity_Doc extends AppCompatActivity {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if ( device.getName().equals("tecycom1")) {
+                    if ( device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
                         mmDevice = device;
                         Log.e(TAG, "Find BT: "+ device.getName());
                         break;
@@ -492,14 +547,11 @@ public class Activity_Doc extends AppCompatActivity {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
-                        Toast.makeText(context, "Bluetooth off. Prepare to turn on.", Toast.LENGTH_SHORT).show();
                         findBT();
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
-                        Toast.makeText(context, "Bluetooth turning off.", Toast.LENGTH_SHORT).show();
                         break;
                     case BluetoothAdapter.STATE_ON:
-                        Toast.makeText(context, "Bluetooth on.", Toast.LENGTH_SHORT).show();
                         try {
                             openBT();
                         } catch (IOException e) {
@@ -507,7 +559,6 @@ public class Activity_Doc extends AppCompatActivity {
                         }
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
-                        Toast.makeText(context, "Bluetooth turning on.", Toast.LENGTH_SHORT).show();
 
                         break;
                 }
@@ -521,10 +572,8 @@ public class Activity_Doc extends AppCompatActivity {
             String action = intent.getAction();
             switch (action) {
                 case BluetoothDevice.ACTION_ACL_CONNECTED:
-                    Toast.makeText(context, "Bluetooth is connected.", Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothDevice.ACTION_ACL_DISCONNECTED:
-                    Toast.makeText(context, "Bluetooth is disconnected. Prepare to connect.", Toast.LENGTH_SHORT).show();
                     try {
                         findBT();
                         openBT();
@@ -543,4 +592,7 @@ public class Activity_Doc extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
 }

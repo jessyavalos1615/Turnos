@@ -474,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if ( device.getName().equals("tecycom1")) {
+                    if ( device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
                         mmDevice = device;
                         Log.e(TAG, "Find BT: "+ device.getName());
                         break;
@@ -633,14 +633,11 @@ public class MainActivity extends AppCompatActivity {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
-                        Toast.makeText(context, "Bluetooth off. Prepare to turn on.", Toast.LENGTH_SHORT).show();
                         findBT();
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
-                        Toast.makeText(context, "Bluetooth turning off.", Toast.LENGTH_SHORT).show();
                         break;
                     case BluetoothAdapter.STATE_ON:
-                        Toast.makeText(context, "Bluetooth on.", Toast.LENGTH_SHORT).show();
                         try {
                             openBT();
                         } catch (IOException e) {
@@ -648,7 +645,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
-                        Toast.makeText(context, "Bluetooth turning on.", Toast.LENGTH_SHORT).show();
 
                         break;
                 }
@@ -662,10 +658,8 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             switch (action) {
                 case BluetoothDevice.ACTION_ACL_CONNECTED:
-                    Toast.makeText(context, "Bluetooth is connected.", Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothDevice.ACTION_ACL_DISCONNECTED:
-                    Toast.makeText(context, "Bluetooth is disconnected. Prepare to connect.", Toast.LENGTH_SHORT).show();
                     try {
                         findBT();
                         openBT();

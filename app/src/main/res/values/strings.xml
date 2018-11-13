@@ -26,5 +26,8 @@
     <string name="othe">Otros Servicios</string>
     <string name="doc">Documentos</string>
     <string name="company">CS Latinos</string>
+    <string name="nuevo">¿Es primera vez que requiere nuestro servicio de notaria?</string>
+    <string name="yes">SI</string>
+    <string name="No">No</string>
 
 </resources>

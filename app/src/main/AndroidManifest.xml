@@ -23,28 +23,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Doc"
+        <activity
+            android:name=".Activity_Doc"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
         </activity>
-        <activity android:name=".Activity_OtherS"
+        <activity
+            android:name=".Activity_OtherS"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
         </activity>
+        <activity android:name=".nuevo"
+                  android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
