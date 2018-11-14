@@ -36,7 +36,7 @@ public class Activity_OtherS extends AppCompatActivity {
     String TAG = "Activity_OtherS";
 
     ImageButton ib_packet, ib_temporal,
-                ib_vehicule, ib_travel;
+            ib_vehicule, ib_travel;
 
     Handler handler;
 
@@ -64,17 +64,17 @@ public class Activity_OtherS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__other_s);
 
-        ib_packet = (ImageButton)findViewById(R.id.packet);
-        ib_temporal = (ImageButton)findViewById(R.id.temporal);
-        ib_travel = (ImageButton)findViewById(R.id.travel);
-        ib_vehicule = (ImageButton)findViewById(R.id.vehicule);
-        progressbar = (ProgressBar)findViewById(R.id.progressbar);
-        layout = (LinearLayout)findViewById(R.id.others);
+        ib_packet = (ImageButton) findViewById(R.id.packet);
+        ib_temporal = (ImageButton) findViewById(R.id.temporal);
+        ib_travel = (ImageButton) findViewById(R.id.travel);
+        ib_vehicule = (ImageButton) findViewById(R.id.vehicule);
+        progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        layout = (LinearLayout) findViewById(R.id.others);
         final Intent intent = new Intent(Activity_OtherS.this, MainActivity.class);
         main = new MainActivity();
         handler = new Handler();
 
-        try{
+        try {
             findBT();
             openBT();
             handler.postDelayed(new Runnable() {
@@ -84,7 +84,7 @@ public class Activity_OtherS extends AppCompatActivity {
                     layout.setVisibility(View.VISIBLE);
                 }
             }, 3000);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
 
@@ -122,7 +122,7 @@ public class Activity_OtherS extends AppCompatActivity {
                     //14
                     progressbar.setVisibility(View.VISIBLE);
                     layout.setVisibility(View.INVISIBLE);
-                    getdata("14", "Permisos temporales");
+                    getdata("14", "Permisos temp.");
                     startActivity(intent);
                     closeBT();
                 } catch (IOException e) {
@@ -176,7 +176,7 @@ public class Activity_OtherS extends AppCompatActivity {
                     //14
                     progressbar.setVisibility(View.VISIBLE);
                     layout.setVisibility(View.INVISIBLE);
-                    getdata("14", "Legalización de vehículos");
+                    getdata("14", "Legalizacion de v.");
                     startActivity(intent);
                     closeBT();
                 } catch (IOException e) {
@@ -196,10 +196,11 @@ public class Activity_OtherS extends AppCompatActivity {
             }
         });
     }
-    public void getdata(String idServicio,String Servicio) throws IOException, JSONException {
+
+    public void getdata(String idServicio, String Servicio) throws IOException, JSONException {
         try {
             //el metodo debera recibir el numero del servicio que sera el enviado al web service;
-            Log.e(TAG,"Valores que recive del boton: "+idServicio+" "+Servicio);
+            Log.e(TAG, "Valores que recive del boton: " + idServicio + " " + Servicio);
             String sql = "http://centrodeservicioslatinos.xyz/index2.php/?param1=" + idServicio;
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -221,10 +222,10 @@ public class Activity_OtherS extends AppCompatActivity {
             }
 
             json = response.toString();
-            Log.e(TAG, "json: "+ json);
+            Log.e(TAG, "json: " + json);
             JSONArray jsonArr = null;
             jsonArr = new JSONArray(json);
-            Log.e(TAG, "json array: "+ jsonArr);
+            Log.e(TAG, "json array: " + jsonArr);
             //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
             //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
             //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
@@ -238,11 +239,11 @@ public class Activity_OtherS extends AppCompatActivity {
                 } else {
                     Departamento = "Escritorio ";
                 }
-                Log.e(TAG, jsonObject.getString("idticket") );
+                Log.e(TAG, jsonObject.getString("idticket"));
                 sendData((String) jsonObject.get("idticket"), Servicio, Departamento);
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, "Data don´t send", Toast.LENGTH_SHORT).show();
             Log.e("getdata", e.getMessage());
             handler.postDelayed(new Runnable() {
@@ -254,42 +255,44 @@ public class Activity_OtherS extends AppCompatActivity {
             }, 2000);
         }
     }
+
     public void findBT() {
 
         try {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-            if(mBluetoothAdapter == null) {
+            if (mBluetoothAdapter == null) {
                 Toast.makeText(this, "Bluetooth no support device.", Toast.LENGTH_SHORT).show();
             }
 
-            if(!mBluetoothAdapter.isEnabled()) {
+            if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBluetooth, 0);
             }
 
             Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
-            if(pairedDevices.size() > 0) {
+            if (pairedDevices.size() > 0) {
                 for (BluetoothDevice device : pairedDevices) {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if ( device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
+                    if (device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
                         mmDevice = device;
-                        Log.e(TAG, "Find BT: "+ device.getName());
+                        Log.e(TAG, "Find BT: " + device.getName());
                         break;
-                    }else{
+                    } else {
 
                     }
                 }
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Find BT: " + e.getMessage());
         }
     }
+
     public void openBT() throws IOException {
         try {
 
@@ -308,7 +311,8 @@ public class Activity_OtherS extends AppCompatActivity {
             Toast.makeText(this, "Bluetooth not conected.", Toast.LENGTH_SHORT).show();
         }
     }
-    public void beginListenForData(){
+
+    public void beginListenForData() {
         try {
             final Handler handler = new Handler();
 
@@ -377,24 +381,25 @@ public class Activity_OtherS extends AppCompatActivity {
             Log.e(TAG, "For data: " + e.getMessage());
         }
     }
-    public void sendData(String num,String Servicio,String Departamento) throws IOException {
+
+    public void sendData(String num, String Servicio, String Departamento) throws IOException {
 
         try {
 
 
-            String  msg2 =
+            String msg2 =
                     "! 0 200 100 1 1\n" +
                             "IN-INCHES\n" +
-                            "T 8 0 0 0 ****************\n"+
+                            "T 8 0 0 0 ****************\n" +
 
                             "IN-DOTS\n" +
-                            "T 4 0 0 0 ****************\n"+
+                            "T 4 0 0 0 ****************\n" +
                             "T 4 0 0 13    CS latinos\n" +
-                            "T 4 0  0 50  " +Servicio+"\n" +
+                            "T 4 0  0 50  " + Servicio + "\n" +
                             "T 4 0  0 51 ______________ \n" +
-                            "T 4 0 0 90  " +Departamento+"\n"+
-                            "T 4 0 0 130 turno: "+num+" \n" +
-                            "T 4 0 0 160 ****************\n"+
+                            "T 4 0 0 90  " + Departamento + "\n" +
+                            "T 4 0 0 130 turno: " + num + " \n" +
+                            "T 4 0 0 160 ****************\n" +
                             "PRINT\n";
 
             mmOutputStream.write(msg2.getBytes());
@@ -472,12 +477,18 @@ public class Activity_OtherS extends AppCompatActivity {
         }
     };
 
-    void closeBT(){
+    void closeBT() {
         try {
             mmSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        closeBT();
     }
 
 }

@@ -13,6 +13,8 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     public BluetoothAdapter mBluetoothAdapter;
     public BluetoothSocket mmSocket;
-    public BluetoothDevice mmDevice;
+    public BluetoothDevice mmDevice, device;
 
     // needed for communication to bluetooth device / network
     public OutputStream mmOutputStream;
@@ -57,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
             ib_phone, ib_money, ib_other, ib_info,
             ib_doc;
 
+    Intent enableBluetooth;
+
+    String sql;
+
     ProgressBar progressbar;
+
+    int REQUEST_CODE = 1;
 
     ScrollView scrollView;
 
@@ -66,14 +74,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ib_mail = (ImageButton)findViewById(R.id.mail);       ib_services = (ImageButton)findViewById(R.id.services);
-        ib_sends = (ImageButton)findViewById(R.id.sends);     ib_copy = (ImageButton)findViewById(R.id.copy);
-        ib_scan = (ImageButton)findViewById(R.id.scan);       ib_passport = (ImageButton)findViewById(R.id.passport);
-        ib_forms = (ImageButton)findViewById(R.id.forms);     ib_phone = (ImageButton)findViewById(R.id.phone);
-        ib_doc = (ImageButton)findViewById(R.id.doc);         ib_other = (ImageButton)findViewById(R.id.others);
-        ib_info = (ImageButton)findViewById(R.id.info);       ib_fax = (ImageButton)findViewById(R.id.fax);
-        ib_money = (ImageButton)findViewById(R.id.money);     progressbar = (ProgressBar)findViewById(R.id.progressbar);
-        scrollView = (ScrollView)findViewById(R.id.land_scroll); handler = new Handler();
+        ib_mail = (ImageButton) findViewById(R.id.mail);
+        ib_services = (ImageButton) findViewById(R.id.services);
+        ib_sends = (ImageButton) findViewById(R.id.sends);
+        ib_copy = (ImageButton) findViewById(R.id.copy);
+        ib_scan = (ImageButton) findViewById(R.id.scan);
+        ib_passport = (ImageButton) findViewById(R.id.passport);
+        ib_forms = (ImageButton) findViewById(R.id.forms);
+        ib_phone = (ImageButton) findViewById(R.id.phone);
+        ib_doc = (ImageButton) findViewById(R.id.doc);
+        ib_other = (ImageButton) findViewById(R.id.others);
+        ib_info = (ImageButton) findViewById(R.id.info);
+        ib_fax = (ImageButton) findViewById(R.id.fax);
+        ib_money = (ImageButton) findViewById(R.id.money);
+        progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        scrollView = (ScrollView) findViewById(R.id.land_scroll);
+        handler = new Handler();
 
         IntentFilter filter1 = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver1, filter1);
@@ -87,15 +103,19 @@ public class MainActivity extends AppCompatActivity {
             progressbar.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.INVISIBLE);
             findBT();
-            openBT();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    try {
+                        openBT();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     progressbar.setVisibility(View.INVISIBLE);
                     scrollView.setVisibility(View.VISIBLE);
                 }
             }, 2000);
-        }catch(IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "onCreate: " + e.getMessage());
         }
@@ -107,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     //5
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("5","Correo Electronico");
+                    getdata("5", "Correo Electronico");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_mail: " + e.getMessage());
@@ -133,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     //4
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("4","Money Orders");
+                    getdata("4", "Money Orders");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_money: " + e.getMessage());
@@ -158,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                     //2
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("2","Recargas ");
+                    getdata("2", "Recargas ");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_phone: " + e.getMessage());
@@ -183,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     //6
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("6","Fax publico");
+                    getdata("6", "Fax publico");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_fax: " + e.getMessage());
@@ -208,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     //7
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("7","Llenado de formas");
+                    getdata("7", "Llenado de formas");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_forms: " + e.getMessage());
@@ -233,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                     //9
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("9","Passaport");
+                    getdata("9", "Passaport");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_passport: " + e.getMessage());
@@ -258,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                     //8
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("8","Escaneo doc.");
+                    getdata("8", "Escaneo doc.");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_scan: " + e.getMessage());
@@ -277,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         ib_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -285,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                     //15
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("15","Centro de copiado ");
+                    getdata("15", "Centro de copiado ");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_copy: " + e.getMessage());
@@ -310,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
                     //1
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("12","Envios de dinero ");
+                    getdata("1", "Envios de dinero ");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_sends: " + e.getMessage());
@@ -335,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                     //3
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("3","Pago servicios");
+                    getdata("3", "Pago servicios");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_services: " + e.getMessage());
@@ -358,7 +377,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressbar.setVisibility(View.VISIBLE);
                 scrollView.setVisibility(View.INVISIBLE);
-                closeBT();
+                if (mmSocket.isConnected()) {
+                    closeBT();
+                }
+
                 Intent intent = new Intent(MainActivity.this, Activity_OtherS.class);
                 startActivity(intent);
             }
@@ -369,6 +391,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressbar.setVisibility(View.VISIBLE);
                 scrollView.setVisibility(View.INVISIBLE);
+                if (mmSocket.isConnected()) {
+                    closeBT();
+                }
                 closeBT();
                 Intent intent = new Intent(MainActivity.this, Activity_Doc.class);
                 startActivity(intent);
@@ -383,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                     //10
                     progressbar.setVisibility(View.VISIBLE);
                     scrollView.setVisibility(View.INVISIBLE);
-                    getdata("5","Informacion");
+                    getdata("10", "Informacion");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ib_info: " + e.getMessage());
@@ -393,12 +418,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     //Seccion de codigo para conexion web services
-    public void getdata(String idServicio,String Servicio) throws IOException, JSONException {
+    public void getdata(String idServicio, String Servicio) throws IOException, JSONException {
+        //el metodo debera recibir el numero del servicio que sera el enviado al web service;
+        Log.e(TAG, "Valores que recive del boton: " + idServicio + " " + Servicio);
+        if (mmDevice.getName().equals("tecycom1")) {
+            sql = "http://centrodeservicioslatinos.xyz/index2.php/?param1=" + idServicio;
+        } else {
+            sql = "http://centrodeservicioslatinos.xyz/index.php/?param1=" + idServicio;
+        }
         try {
-            //el metodo debera recibir el numero del servicio que sera el enviado al web service;
-            Log.e(TAG,"Valores que recive del boton: "+idServicio+" "+Servicio);
-            String sql = "http://centrodeservicioslatinos.xyz/index2.php/?param1=" + idServicio;
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             URL url = null;
@@ -419,10 +449,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             json = response.toString();
-            Log.e(TAG, "json: "+ json);
+            Log.e(TAG, "json: " + json);
             JSONArray jsonArr = null;
             jsonArr = new JSONArray(json);
-            Log.e(TAG, "json array: "+ jsonArr);
+            Log.e(TAG, "json array: " + jsonArr);
             //en el for se recore el array de datos en este caso el array solo contiene un dato. y con al instruccion
             //jsonObject.optString(""); adentro del parentesis debera ponerse el nombre del elemento del json
             //para ver la estructura del json colocar la direccion web usada anteriormente en el navegador
@@ -436,11 +466,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Departamento = "Escritorio ";
                 }
-                Log.e(TAG, jsonObject.getString("idticket") );
+                Log.e(TAG, jsonObject.getString("idticket"));
                 sendData((String) jsonObject.get("idticket"), Servicio, Departamento);
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, "Data don´t send", Toast.LENGTH_SHORT).show();
             Log.e("getdata", e.getMessage());
             handler.postDelayed(new Runnable() {
@@ -452,43 +482,45 @@ public class MainActivity extends AppCompatActivity {
             }, 2000);
         }
     }
+
     //Terminacion de codigo del web services
     public void findBT() {
 
         try {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-            if(mBluetoothAdapter == null) {
+            if (mBluetoothAdapter == null) {
                 Toast.makeText(this, "Bluetooth no support device.", Toast.LENGTH_SHORT).show();
             }
 
-            if(!mBluetoothAdapter.isEnabled()) {
-                Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBluetooth, 0);
+            if (!mBluetoothAdapter.isEnabled()) {
+                enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBluetooth, REQUEST_CODE);
             }
 
             Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
-            if(pairedDevices.size() > 0) {
+            if (pairedDevices.size() > 0) {
                 for (BluetoothDevice device : pairedDevices) {
 
                     // RPP300 is the name of the bluetooth printer device
                     // we got this name from the list of paired devices
-                    if ( device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
+                    if (device.getName().equals("tecycom1") || device.getName().equals("cslatinos")) {
                         mmDevice = device;
-                        Log.e(TAG, "Find BT: "+ device.getName());
+                        Log.e(TAG, "Find BT: " + device.getName());
                         break;
-                    }else{
+                    } else {
 
                     }
                 }
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Find BT: " + e.getMessage());
         }
     }
+
     public void openBT() throws IOException {
         try {
 
@@ -507,7 +539,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Bluetooth not conected.", Toast.LENGTH_SHORT).show();
         }
     }
-    public void beginListenForData(){
+
+    public void beginListenForData() {
         try {
             final Handler handler = new Handler();
 
@@ -576,24 +609,25 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "For data: " + e.getMessage());
         }
     }
-    public void sendData(String num,String Servicio,String Departamento) throws IOException {
+
+    public void sendData(String num, String Servicio, String Departamento) throws IOException {
 
         try {
 
 
-            String  msg2 =
-                            "! 0 200 100 1 1\n" +
+            String msg2 =
+                    "! 0 200 100 1 1\n" +
                             "IN-INCHES\n" +
-                            "T 8 0 0 0 ****************\n"+
+                            "T 8 0 0 0 ****************\n" +
 
                             "IN-DOTS\n" +
-                            "T 4 0 0 0 ****************\n"+
+                            "T 4 0 0 0 ****************\n" +
                             "T 4 0 0 13    CS latinos\n" +
-                            "T 4 0  0 50  " +Servicio+"\n" +
-                                    "T 4 0  0 51 ______________ \n" +
-                            "T 4 0 0 90  " +Departamento+"\n"+
-                            "T 4 0 0 130 turno: "+num+" \n" +
-                            "T 4 0 0 160 ****************\n"+
+                            "T 4 0  0 50  " + Servicio + "\n" +
+                            "T 4 0  0 51 ______________ \n" +
+                            "T 4 0 0 90  " + Departamento + "\n" +
+                            "T 4 0 0 130 turno: " + num + " \n" +
+                            "T 4 0 0 160 ****************\n" +
                             "PRINT\n";
 
             mmOutputStream.write(msg2.getBytes());
@@ -658,10 +692,13 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             switch (action) {
                 case BluetoothDevice.ACTION_ACL_CONNECTED:
+                    Toast.makeText(context, "BT is conected", Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothDevice.ACTION_ACL_DISCONNECTED:
+                    Toast.makeText(context, "BT is disconnected.", Toast.LENGTH_SHORT).show();
+                    closeBT();
+                    findBT();
                     try {
-                        findBT();
                         openBT();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -671,12 +708,56 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    void closeBT(){
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (requestCode == RESULT_CANCELED) {
+                enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBluetooth, REQUEST_CODE);
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.syncr:
+                closeBT();
+                findBT();
+                try {
+                    openBT();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    void closeBT() {
         try {
             mmSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mBroadcastReceiver1);
+        unregisterReceiver(mBroadcastReceiver3);
+    }
 }
